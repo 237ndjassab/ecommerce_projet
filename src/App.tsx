@@ -8,7 +8,7 @@ import Category from "./pages/Main/Shop/Category";
 import About_us from "./pages/Main/About_us";
 import Contact from "./pages/Main/Contact";
 import NotFound from "./pages/NotFound";
-import Signin from "./pages/auth/signin";
+import Register from "./pages/auth/register";
 import Login from "./pages/auth/login";
 import ForgotPassword from "./pages/auth/forgotPassword";
 import ConfirmOTP from "./pages/auth/confirmOtp";
@@ -31,7 +31,7 @@ const App: React.FC = () => {
             <Route path="contact" index element={<Contact />} />
           </Route>
 
-          <Route path="/signin" element={<Signin />} />
+          <Route path="/register" element={<Register />} />
           <Route path="/login" element={<Login />} />
           <Route path="/forgotpwd" element={<ForgotPassword />} />
           <Route path="/confirmotp" element={<ConfirmOTP />} />
