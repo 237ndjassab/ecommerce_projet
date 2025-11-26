@@ -13,30 +13,34 @@ import Login from "./pages/auth/login";
 import ForgotPassword from "./pages/auth/forgotPassword";
 import ConfirmOTP from "./pages/auth/confirmOtp";
 import ResetPassword from "./pages/auth/resetPassword";
+import { Provider } from "react-redux";
+import { store } from "./store/store";
 
 const App: React.FC = () => {
   return (
-    <BrowserRouter>
-      <Routes>
-        <Route path="" element={<MainLayout />}>
-          <Route path="" element={<Navigate to={"/home"} />} />
-          <Route path="home" index element={<Home />} />
-          <Route path="blog" index element={<Blog />} />
-          <Route path="product" index element={<Products />} />
-          <Route path="categorie" index element={<Category />} />
-          <Route path="about" index element={<About_us />} />
-          <Route path="contact" index element={<Contact />} />
-        </Route>
+    <Provider store={store}>
+      <BrowserRouter>
+        <Routes>
+          <Route path="" element={<MainLayout />}>
+            <Route path="" element={<Navigate to={"/home"} />} />
+            <Route path="home" index element={<Home />} />
+            <Route path="blog" index element={<Blog />} />
+            <Route path="product" index element={<Products />} />
+            <Route path="categorie" index element={<Category />} />
+            <Route path="about" index element={<About_us />} />
+            <Route path="contact" index element={<Contact />} />
+          </Route>
 
-        <Route path="/signin" element={<Signin />} />
-        <Route path="/login" element={<Login />} />
-        <Route path="/forgotpwd" element={<ForgotPassword />} />
-        <Route path="/confirmotp" element={<ConfirmOTP />} />
-        <Route path="/resetpwd" element={<ResetPassword />} />
+          <Route path="/signin" element={<Signin />} />
+          <Route path="/login" element={<Login />} />
+          <Route path="/forgotpwd" element={<ForgotPassword />} />
+          <Route path="/confirmotp" element={<ConfirmOTP />} />
+          <Route path="/resetpwd" element={<ResetPassword />} />
 
-        <Route path="*" element={<NotFound />} />
-      </Routes>
-    </BrowserRouter>
+          <Route path="*" element={<NotFound />} />
+        </Routes>
+      </BrowserRouter>
+    </Provider>
   );
 };
 
