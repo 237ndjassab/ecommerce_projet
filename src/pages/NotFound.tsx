@@ -1,14 +1,17 @@
-import React from 'react'
+import { MdErrorOutline } from "react-icons/md";
 
-const NotFound:React.FC = () => {
+const NotFound = () => {
   return (
-    <main className='min-h-screen grid place-items-center'>
-        <div className="flex flex-col items-center">
-            <h1 className='text-6xl font-bold text-blue-600'>404</h1>
-            <p>Page Not Found</p>
-        </div>
-    </main>
-  )
-}
+    <>
+      <section className="flex flex-col items-center justify-center gap-4 bg-[#1a1a2b] h-dvh">
+        <MdErrorOutline className="text-8xl text-white" />
+        <h1 className="text-6xl text-white font-medium">404</h1>
+        <p className="flex items-center text-2xl font-medium text-[#ed6d8b]">
+          Sorry, Page not found !
+        </p>
+      </section>
+    </>
+  );
+};
 
-export default NotFound
+export default NotFound;
