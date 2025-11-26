@@ -8,6 +8,7 @@ import Category from './pages/Main/Shop/Category'
 import About_us from './pages/Main/About_us'
 import Contact from './pages/Main/Contact'
 import NotFound from './pages/NotFound'
+import AdminLayout from './layout/AdminLayout'
 
 const App = () => {
   return (
@@ -22,6 +23,7 @@ const App = () => {
           <Route path='about' index element={<About_us/>} />
           <Route path='contact' index element={<Contact/>} />
         </Route>
+        <Route path="" element={<AdminLayout />}></Route>
         <Route path='*' element={<NotFound/>} />
       </Routes>
     </BrowserRouter>
