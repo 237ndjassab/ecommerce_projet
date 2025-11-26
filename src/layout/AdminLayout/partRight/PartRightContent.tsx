@@ -1,7 +1,7 @@
 import React from 'react'
-import Header from './Header.jsx'
+import Header from './Header.js'
 import { Outlet } from 'react-router'
-import Footer from './Footer.jsx'
+import Footer from './Footer.js'
 
 const PartRightContent = () => {
   return (

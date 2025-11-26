@@ -1,6 +1,6 @@
 import React from "react";
-import SideBar from "./partLeft/sidebar";
-import PartRightContent from "./partRight/PartRightContent.jsx";
+import SideBar from "./partLeft/sidebar.js";
+import PartRightContent from "./partRight/PartRightContent.js";
 
 const AdminLayout = () => {
   return (
@@ -11,4 +11,4 @@ const AdminLayout = () => {
   );
 };
 
-export default AdminLayout;
+export default AdminLayout

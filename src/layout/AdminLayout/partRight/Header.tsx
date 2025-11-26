@@ -3,7 +3,6 @@ import { HiMenuAlt1 } from "react-icons/hi";
 import { MdSearch } from "react-icons/md";
 import { GiUsaFlag } from "react-icons/gi";
 import { IoBag } from "react-icons/io5";
-import Authentification from "../../pages/Authentification.jsx";
 const Header = () => {
   return (
     <>

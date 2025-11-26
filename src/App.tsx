@@ -9,6 +9,7 @@ import About_us from './pages/Main/About_us'
 import Contact from './pages/Main/Contact'
 import NotFound from './pages/NotFound'
 import Dashboard from './pages/Admin/Dashboard'
+import AdminLayout from './layout/AdminLayout'
 
 const App = () => {
   return (
