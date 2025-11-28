@@ -326,51 +326,173 @@ const Dashboard = () => {
               </div>
               {/* dans cette div, on aura la date de la commande */}
               <div className="cursor-pointer w-[15%] flex flex-row items-center">
-                <p className="text-gray-600 font-medium text-[14px]">2020-11-02</p>
+                <p className="text-gray-600 font-medium text-[14px]">2020-09-05</p>
               </div>
               {/* ici on aura le total du prix a payer de la commande */}
               <div className="cursor-pointer w-[15%] flex flex-row items-center">
-                <p className="text-gray-600 font-medium text-[14px]">$2,742.00</p>
+                <p className="text-gray-600 font-medium text-[14px]">$204.00</p>
               </div>
             </div>
-            <div className="w-full flex flex-row items-center justify-between border-b-[1px] border-b-gray-200">
-              <p className="text-gray-700 text-[12px]">
-                <Link to={"/categorie"}>/categories/desktop</Link>
-              </p>
-              <div className="text-gray-400 cursor-pointer">
-                <p className="text-gray-400 text-[12px]">7</p>
+            <div className="w-full flex flex-row items-center justify-between py-2 border-b-[1px] border-b-gray-200">
+              <div className="cursor-pointer w-[15%] flex flex-row items-center">
+                <p className="text-gray-900 font-medium text-[13px]">#00507</p>
+              </div>
+              <div className="cursor-pointer w-[15%] flex flex-row items-center">
+                <p className="text-blue-600 font-medium text-[12px] bg-blue-300 rounded-md p-0.5 w-fit">Pending</p>
+              </div>
+              {/* le pays du users si besoin */}
+              <div className="cursor-pointer w-[5%] flex flex-row items-center">
+                <p className="text-green-600 font-medium text-[12px] bg-green-300 rounded-md p-0.5 w-fit">Italy</p>
+              </div>
+              {/* les informations sur les users :
+               la premiere div p contient les intiales du firstName et LastName du user
+                la deuxieme div p contient le fullName du user */}
+              <div className="cursor-pointer w-[35%] flex flex-row items-center gap-2">
+                <p className="text-gray-600 font-medium text-[12px] bg-gray-300 rounded-full p-1 w-fit">AR</p>
+                <p className="text-gray-600 font-medium text-[14px] hover:underline">Andrea Rossi</p>
+              </div>
+              {/* dans cette div, on aura la date de la commande */}
+              <div className="cursor-pointer w-[15%] flex flex-row items-center">
+                <p className="text-gray-600 font-medium text-[14px]">	2020-08-21</p>
+              </div>
+              {/* ici on aura le total du prix a payer de la commande */}
+              <div className="cursor-pointer w-[15%] flex flex-row items-center">
+                <p className="text-gray-600 font-medium text-[14px]">$5,039.00</p>
               </div>
             </div>
-            <div className="w-full flex flex-row items-center justify-between border-b-[1px] border-b-gray-200">
-              <p className="text-gray-700 text-[12px]">
-                <Link to={"/blog"}>/blog</Link>
-              </p>
-              <div className="text-gray-400 cursor-pointer">
-                <p className="text-gray-400 text-[12px]">4</p>
+            <div className="w-full flex flex-row items-center justify-between py-2 border-b-[1px] border-b-gray-200">
+              <div className="cursor-pointer w-[15%] flex flex-row items-center">
+                <p className="text-gray-900 font-medium text-[13px]">#00104</p>
+              </div>
+              <div className="cursor-pointer w-[15%] flex flex-row items-center">
+                <p className="text-red-600 font-medium text-[12px] bg-red-300 rounded-md p-0.5 w-fit">Canceled</p>
+              </div>
+              {/* le pays du users si besoin */}
+              <div className="cursor-pointer w-[5%] flex flex-row items-center">
+                <p className="text-green-600 font-medium text-[12px] bg-green-300 rounded-md p-0.5 w-fit">Italy</p>
+              </div>
+              {/* les informations sur les users :
+               la premiere div p contient les intiales du firstName et LastName du user
+                la deuxieme div p contient le fullName du user */}
+              <div className="cursor-pointer w-[35%] flex flex-row items-center gap-2">
+                <p className="text-gray-600 font-medium text-[12px] bg-gray-300 rounded-full p-1 w-fit">RF</p>
+                <p className="text-gray-600 font-medium text-[14px] hover:underline">Richard Feynman</p>
+              </div>
+              {/* dans cette div, on aura la date de la commande */}
+              <div className="cursor-pointer w-[15%] flex flex-row items-center">
+                <p className="text-gray-600 font-medium text-[14px]">	2020-06-22</p>
+              </div>
+              {/* ici on aura le total du prix a payer de la commande */}
+              <div className="cursor-pointer w-[15%] flex flex-row items-center">
+                <p className="text-gray-600 font-medium text-[14px]">$79.00</p>
               </div>
             </div>
-            <div className="w-full flex flex-row items-center justify-between border-b-[1px] border-b-gray-200">
-              <p className="text-gray-700 text-[12px]">
-                <Link to={"/checkout"}>/checkout</Link>
-              </p>
-              <div className="text-gray-400 cursor-pointer">
-                <p className="text-gray-400 text-[12px]">3</p>
+            <div className="w-full flex flex-row items-center justify-between py-2 border-b-[1px] border-b-gray-200">
+              <div className="cursor-pointer w-[15%] flex flex-row items-center">
+                <p className="text-gray-900 font-medium text-[13px]">#00097</p>
+              </div>
+              <div className="cursor-pointer w-[15%] flex flex-row items-center">
+                <p className="text-green-600 font-medium text-[12px] bg-green-300 rounded-md p-0.5 w-fit">Completed</p>
+              </div>
+              {/* le pays du users si besoin */}
+              <div className="cursor-pointer w-[5%] flex flex-row items-center">
+                <p className="text-green-600 font-medium text-[12px] bg-green-300 rounded-md p-0.5 w-fit">Italy</p>
+              </div>
+              {/* les informations sur les users :
+               la premiere div p contient les intiales du firstName et LastName du user
+                la deuxieme div p contient le fullName du user */}
+              <div className="cursor-pointer w-[35%] flex flex-row items-center gap-2">
+                <p className="text-gray-600 font-medium text-[12px] bg-gray-300 rounded-full p-1 w-fit">LG</p>
+                <p className="text-gray-600 font-medium text-[14px] hover:underline">Leonardo Garcia</p>
+              </div>
+              {/* dans cette div, on aura la date de la commande */}
+              <div className="cursor-pointer w-[15%] flex flex-row items-center">
+                <p className="text-gray-600 font-medium text-[14px]">	2020-05-09</p>
+              </div>
+              {/* ici on aura le total du prix a payer de la commande */}
+              <div className="cursor-pointer w-[15%] flex flex-row items-center">
+                <p className="text-gray-600 font-medium text-[14px]">	$826.00</p>
               </div>
             </div>
-            <div className="w-full flex flex-row items-center justify-between border-b-[1px] border-b-gray-200">
-              <p className="text-gray-700 text-[12px]">
-                <Link to={"/about"}>/about-us</Link>
-              </p>
-              <div className="text-gray-400 cursor-pointer">
-                <p className="text-gray-400 text-[12px]">3</p>
+            <div className="w-full flex flex-row items-center justify-between py-2 border-b-[1px] border-b-gray-200">
+              <div className="cursor-pointer w-[15%] flex flex-row items-center">
+                <p className="text-gray-900 font-medium text-[13px]">#00082</p>
+              </div>
+              <div className="cursor-pointer w-[15%] flex flex-row items-center">
+                <p className="text-green-600 font-medium text-[12px] bg-green-300 rounded-md p-0.5 w-fit">Completed</p>
+              </div>
+              {/* le pays du users si besoin */}
+              <div className="cursor-pointer w-[5%] flex flex-row items-center">
+                <p className="text-green-600 font-medium text-[12px] bg-green-300 rounded-md p-0.5 w-fit">Italy</p>
+              </div>
+              {/* les informations sur les users :
+               la premiere div p contient les intiales du firstName et LastName du user
+                la deuxieme div p contient le fullName du user */}
+              <div className="cursor-pointer w-[35%] flex flex-row items-center gap-2">
+                <p className="text-gray-600 font-medium text-[12px] bg-gray-300 rounded-full p-1 w-fit">NT</p>
+                <p className="text-gray-600 font-medium text-[14px] hover:underline">Nikola Tesla</p>
+              </div>
+              {/* dans cette div, on aura la date de la commande */}
+              <div className="cursor-pointer w-[15%] flex flex-row items-center">
+                <p className="text-gray-600 font-medium text-[14px]">		2020-04-27</p>
+              </div>
+              {/* ici on aura le total du prix a payer de la commande */}
+              <div className="cursor-pointer w-[15%] flex flex-row items-center">
+                <p className="text-gray-600 font-medium text-[14px]">	$1,052.00</p>
               </div>
             </div>
-            <div className="w-full flex flex-row items-center justify-between border-b-[1px] border-b-gray-200">
-              <p className="text-gray-700 text-[12px]">
-                <Link to={"/contact"}>/contact</Link>
-              </p>
-              <div className="text-gray-400 cursor-pointer">
-                <p className="text-gray-400 text-[12px]">3</p>
+            <div className="w-full flex flex-row items-center justify-between py-2 border-b-[1px] border-b-gray-200">
+              <div className="cursor-pointer w-[15%] flex flex-row items-center">
+                <p className="text-gray-900 font-medium text-[13px]">#00063</p>
+              </div>
+              <div className="cursor-pointer w-[15%] flex flex-row items-center">
+                <p className="text-blue-600 font-medium text-[12px] bg-blue-300 rounded-md p-0.5 w-fit">Pending</p>
+              </div>
+              {/* le pays du users si besoin */}
+              <div className="cursor-pointer w-[5%] flex flex-row items-center">
+                <p className="text-green-600 font-medium text-[12px] bg-green-300 rounded-md p-0.5 w-fit">Italy</p>
+              </div>
+              {/* les informations sur les users :
+               la premiere div p contient les intiales du firstName et LastName du user
+                la deuxieme div p contient le fullName du user */}
+              <div className="cursor-pointer w-[35%] flex flex-row items-center gap-2">
+                <p className="text-gray-600 font-medium text-[12px] bg-gray-300 rounded-full p-1 w-fit">MC</p>
+                <p className="text-gray-600 font-medium text-[14px] hover:underline">Marie Curie</p>
+              </div>
+              {/* dans cette div, on aura la date de la commande */}
+              <div className="cursor-pointer w-[15%] flex flex-row items-center">
+                <p className="text-gray-600 font-medium text-[14px]">		2020-02-09</p>
+              </div>
+              {/* ici on aura le total du prix a payer de la commande */}
+              <div className="cursor-pointer w-[15%] flex flex-row items-center">
+                <p className="text-gray-600 font-medium text-[14px]">	$441.00</p>
+              </div>
+            </div>
+            <div className="w-full flex flex-row items-center justify-between py-2 border-b-[1px] border-b-gray-200">
+              <div className="cursor-pointer w-[15%] flex flex-row items-center">
+                <p className="text-gray-900 font-medium text-[13px]">#00012</p>
+              </div>
+              <div className="cursor-pointer w-[15%] flex flex-row items-center">
+                <p className="text-green-600 font-medium text-[12px] bg-green-300 rounded-md p-0.5 w-fit">Completed</p>
+              </div>
+              {/* le pays du users si besoin */}
+              <div className="cursor-pointer w-[5%] flex flex-row items-center">
+                <p className="text-green-600 font-medium text-[12px] bg-green-300 rounded-md p-0.5 w-fit">Italy</p>
+              </div>
+              {/* les informations sur les users :
+               la premiere div p contient les intiales du firstName et LastName du user
+                la deuxieme div p contient le fullName du user */}
+              <div className="cursor-pointer w-[35%] flex flex-row items-center gap-2">
+                <p className="text-gray-600 font-medium text-[12px] bg-gray-300 rounded-full p-1 w-fit">KT</p>
+                <p className="text-gray-600 font-medium text-[14px] hover:underline">Konstantin Tsiolkovsky</p>
+              </div>
+              {/* dans cette div, on aura la date de la commande */}
+              <div className="cursor-pointer w-[15%] flex flex-row items-center">
+                <p className="text-gray-600 font-medium text-[14px]">		2020-01-01</p>
+              </div>
+              {/* ici on aura le total du prix a payer de la commande */}
+              <div className="cursor-pointer w-[15%] flex flex-row items-center">
+                <p className="text-gray-600 font-medium text-[14px]">	$12,961.00</p>
               </div>
             </div>
           </div>
