@@ -496,6 +496,74 @@ const Dashboard = () => {
               </div>
             </div>
           </div>
+
+          <div className="w-full flex flex-row gap-4">
+          <div className="w-full cursor-pointer flex flex-col gap-3.5 items-center p-5 border-[1px] border-gray-100 shadow-md rounded-xs bg-white hover:shadow-md transition-all duration-300 ease-in-out">
+            <div className="w-full flex flex-row items-center justify-between">
+              <p className="text-[#d62243] text-[14px]">Total sells</p>
+              <div className="text-gray-400 cursor-pointer hover:bg-gray-100 rounded-full p-2">
+                <SlOptionsVertical />
+              </div>
+            </div>
+            <div
+              className={`flex ${
+                isOpen ? "flex-col h-full" : "flex-row h-fit"
+              } justify-between w-full `}
+            >
+              <div className="flex flex-col items-center">
+                <p className="font-semibold text-3xl">$3799.00</p>
+              </div>
+              <div
+                className={`w-full flex flex-col ${
+                  isOpen
+                    ? " justify-between items-center h-full gap-3 "
+                    : "items-end "
+                } `}
+              >
+                <div className="flex flex-row gap-1 items-center text-green-600">
+                  <FaArrowTrendUp />
+                  <p>34.7%</p>
+                </div>
+                <p className="text-[#d62243] text-[14px]">
+                  Compared to April 2021
+                </p>
+              </div>
+            </div>
+          </div>
+          <div className="w-full cursor-pointer flex flex-col gap-3.5 items-center p-5 border-[1px] border-gray-100 shadow-md rounded-xs bg-white hover:shadow-md transition-all duration-300 ease-in-out">
+            <div className="w-full flex flex-row items-center justify-between">
+              <p className="text-[#d62243] text-[14px]">Average order value</p>
+              <div className="text-gray-400 cursor-pointer hover:bg-gray-100 rounded-full p-2">
+                <SlOptionsVertical />
+              </div>
+            </div>
+            <div
+              className={`flex ${
+                isOpen ? "flex-col h-full" : "flex-row h-fit"
+              } justify-between w-full `}
+            >
+              <div className="flex flex-col items-center">
+                <p className="font-semibold text-3xl">$272.98</p>
+              </div>
+              <div
+                className={`w-full flex flex-col ${
+                  isOpen
+                    ? " justify-between items-center h-full gap-3 "
+                    : "items-end "
+                } `}
+              >
+                <div className="flex flex-row gap-1 items-center text-green-600">
+                  <FaArrowTrendDown />
+                  <p>12.0%</p>
+                </div>
+                <p className="text-[#d62243] text-[14px]">
+                  Compared to April 2021
+                </p>
+              </div>
+            </div>
+          </div>
+          </div>
+
       </div>
     </div>
   );
