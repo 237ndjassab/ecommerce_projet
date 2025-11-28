@@ -39,7 +39,7 @@ export const loginAction = createAsyncThunk<ApiResponse<AuthInfo>, LoginDto>(
   async (data, apiThunk) => {
     try {
       const response = await fetch("http://localhost:3000/api/auth/login", {
-        method: "POST",
+        method: "Post",
         headers: {
           accept: "application/json",
           "Content-Type": "application/json",
@@ -49,17 +49,19 @@ export const loginAction = createAsyncThunk<ApiResponse<AuthInfo>, LoginDto>(
 
       if (!response.ok) {
         const error = await response.json();
-        console.log("Failed to verify user ", error);
-        return apiThunk.rejectWithValue("Failed to verify user");
+        console.log("Failed to login user: ", error);
+        return apiThunk.rejectWithValue("Failed to login user.");
       }
       const result = await response.json();
 
       console.log("Data login: ", result);
 
       return result;
+      
     } catch (error) {
+      console.log("Error on login request: ", error);
       return apiThunk.rejectWithValue(
-        (error as {message: string}).message || "Failed to verify user."
+        (error as {message: string}).message || "Failed to login user due to network error."
       );
     }
   }
