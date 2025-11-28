@@ -7,7 +7,7 @@ export const registerAction = createAsyncThunk<ApiResponse<User>, RegisterDto>(
   "auth/registerAction",
   async (data, apiThunk) => {
     try {
-      const response = await fetch("http://127.0.0.1:3000/api/auth/register", {
+      const response = await fetch("http://localhost:3000/api/auth/register", {
         method: "Post",
         headers: {
           accept: "application/json",
