@@ -1,6 +1,8 @@
 import { createSlice } from "@reduxjs/toolkit";
 import type { AuthInfo, AuthToken } from "../../types/user";
 import type { ApiError, statusType } from "../../types/base";
+import { loginAction } from "./actions";
+import Utils from "../../helpers/Utils";
 
 export interface AuthState {
   userInfo: AuthInfo | null;
@@ -17,9 +19,11 @@ export interface AuthState {
   };
 }
 
+const userInfo =  Utils.getAuthInfo();
+
 const initialState: AuthState = {
-  userInfo: null,
-  token: null,
+  userInfo: userInfo? userInfo:  null,
+  token: userInfo? userInfo.token:  null,
   status: {
     register: "idle",
     refresh: "idle",
@@ -36,6 +40,26 @@ export const authSlice = createSlice({
   name: "auth",
   initialState,
   reducers: {},
+  extraReducers: (builder) => {
+    builder
+      .addCase(loginAction.pending, (state) => {
+        state.status.login = "pending";
+        state.error.login = { message: null };
+      })
+      .addCase(loginAction.fulfilled, (state, action) => {
+        state.status.login = "succeeded";
+        if(action.payload){
+          state.token = action.payload.data.token;
+          state.userInfo = action.payload.data;
+        }
+      })
+      .addCase(loginAction.rejected, (state, action) => {
+        state.status.login = "failed";
+        if(action.payload){
+          // state.error.login = { message: action.payload };
+        }
+      });
+  },
 });
 
 export default authSlice;
