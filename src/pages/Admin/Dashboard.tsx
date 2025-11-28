@@ -1,4 +1,5 @@
 import React from "react";
+import { FaStar } from "react-icons/fa";
 import { FaArrowTrendDown, FaArrowTrendUp } from "react-icons/fa6";
 import { SlOptionsVertical } from "react-icons/sl";
 import { Link, useOutletContext } from "react-router";
@@ -599,27 +600,156 @@ const Dashboard = () => {
                 <SlOptionsVertical />
               </div>
             </div>
-            <div>
+            <div className="flex flex-row  gap-4 w-full">
               <div className="flex flex-col items-center">
-                <div className="w-2 h-2 rounded-full bg-[#d62243]"></div>
-                <div className="h-full bg-gray-400"></div>
+                <div className="w-2 h-2 rounded-full bg-[#1a1a2b]"></div>
+                <div className="h-full w-0.25 bg-gray-200"></div>
               </div>
-              <div>
+              <div className="flex flex-col gap-2">
                 <p className="text-gray-400 text-[14px]">Yesterday</p>
-                <p>
+                <p className="text-[15px]">
                   Phasellus id mattis nulla. Mauris velit nisi, imperdiet vitae
                   sodales in, maximus ut lectus. Vivamus commodo scelerisque
-                  lacus, at porttitor dui iaculis id. <Link to="/">Curabitur imperdiet
-                  ultrices fermentum.</Link>
+                  lacus, at porttitor dui iaculis id.{" "}
+                  <Link to="/" className="text-[#d62243] hover:underline">
+                    Curabitur imperdiet ultrices fermentum.
+                  </Link>
+                </p>
+              </div>
+            </div>
+            <div className="flex flex-row  gap-4 w-full">
+              <div className="flex flex-col items-center">
+                <div className="w-2 h-2 rounded-full bg-[#1a1a2b]"></div>
+                <div className="h-full w-0.25 bg-gray-200"></div>
+              </div>
+              <div className="flex flex-col gap-2">
+                <p className="text-gray-400 text-[14px]">5 days ago</p>
+                <p className="text-[15px]">
+                  Nulla ut ex mollis, volutpat tellus vitae, accumsan ligula{" "}
+                  <Link to="/" className="text-[#d62243] hover:underline">
+                    Curabitur imperdiet ultrices fermentum.
+                  </Link>
+                </p>
+              </div>
+            </div>
+            <div className="flex flex-row  gap-4 w-full">
+              <div className="flex flex-col items-center">
+                <div className="w-2 h-2 rounded-full bg-[#1a1a2b]"></div>
+                <div className="h-full w-0.25 bg-gray-200"></div>
+              </div>
+              <div className="flex flex-col gap-2">
+                <p className="text-gray-400 text-[14px]">March 27</p>
+                <p className="text-[15px]">
+                  Donec tempor sapien et fringilla facilisis. Nam maximus
+                  consectetur diam.
+                </p>
+              </div>
+            </div>
+            <div className="flex flex-row  gap-4 w-full">
+              <div className="flex flex-col items-center">
+                <div className="w-2 h-2 rounded-full bg-[#1a1a2b]"></div>
+                <div className="h-full w-0.25 bg-gray-200"></div>
+              </div>
+              <div className="flex flex-col gap-2">
+                <p className="text-gray-400 text-[14px]">November 30</p>
+                <p className="text-[15px]">
+                  Many philosophical debates that began in ancient times are
+                  still debated today. In one general sense, philosophy is
+                  associated with wisdom, intellectual culture and a search for
+                  knowledge.
                 </p>
               </div>
             </div>
           </div>
           <div className="w-full cursor-pointer flex flex-col gap-3.5 items-center p-5 border-[1px] border-gray-100 shadow-md rounded-xs bg-white hover:shadow-md transition-all duration-300 ease-in-out">
-            <div className="w-full flex flex-row items-center justify-between">
+            <div className="w-full border-b-[1px] border-b-gray-300 pb-3 flex flex-row items-center justify-between">
               <p className="text-[#d62243] text-[14px]">Recent reviews</p>
               <div className="text-gray-400 cursor-pointer hover:bg-gray-100 rounded-full p-2">
                 <SlOptionsVertical />
+              </div>
+            </div>
+            <div className="w-full flex flex-row items-center justify-between">
+              <div className="w-[10%]"></div>
+              <div className="flex flex-col gap-2 w-[65%]">
+                <p className="text-[#1a1a2b] text-[14px] hover:underline">Wiper Blades Brandix WL2</p>
+                <p className="text-gray-400 text-[12px]">Reviewed by Ryan Ford</p>
+              </div>
+              <div className="w-[25%] flex flex-row gap-1 text-gray-400 cursor-pointer hover:bg-gray-100 rounded-full p-2">
+                <FaStar className="inline-block text-yellow-400" />
+                <FaStar className="inline-block text-yellow-400" />
+                <FaStar className="inline-block text-gray-200" />
+                <FaStar className="inline-block text-gray-200" />
+                <FaStar className="inline-block text-gray-200" />
+              </div>
+            </div>
+            <div className="w-full flex flex-row items-center justify-between">
+              <div className="w-[10%]"></div>
+              <div className="flex flex-col gap-2 w-[65%]">
+                <p className="text-[#1a1a2b] text-[14px] hover:underline">Electric Planer Brandix KL370090G 300 Watts</p>
+                <p className="text-gray-400 text-[12px]">Reviewed by Adam Taylor</p>
+              </div>
+              <div className="w-[25%] flex flex-row gap-1 text-gray-400 cursor-pointer hover:bg-gray-100 rounded-full p-2">
+                <FaStar className="inline-block text-yellow-400" />
+                <FaStar className="inline-block text-yellow-400" />
+                <FaStar className="inline-block text-yellow-400" />
+                <FaStar className="inline-block text-gray-200" />
+                <FaStar className="inline-block text-gray-200" />
+              </div>
+            </div>
+            <div className="w-full flex flex-row items-center justify-between">
+              <div className="w-[10%]"></div>
+              <div className="flex flex-col gap-2 w-[65%]">
+                <p className="text-[#1a1a2b] text-[14px] hover:underline">Water Tap</p>
+                <p className="text-gray-400 text-[12px]">Reviewed by Jessica Moore</p>
+              </div>
+              <div className="w-[25%] flex flex-row gap-1 text-gray-400 cursor-pointer hover:bg-gray-100 rounded-full p-2">
+                <FaStar className="inline-block text-yellow-400" />
+                <FaStar className="inline-block text-yellow-400" />
+                <FaStar className="inline-block text-yellow-400" />
+                <FaStar className="inline-block text-gray-200" />
+                <FaStar className="inline-block text-gray-200" />
+              </div>
+            </div>
+            <div className="w-full flex flex-row items-center justify-between">
+              <div className="w-[10%]"></div>
+              <div className="flex flex-col gap-2 w-[65%]">
+                <p className="text-[#1a1a2b] text-[14px] hover:underline">Brandix Router Power Tool 2017ERXPK</p>
+                <p className="text-gray-400 text-[12px]">Reviewed by Helena Garcia</p>
+              </div>
+              <div className="w-[25%] flex flex-row gap-1 text-gray-400 cursor-pointer hover:bg-gray-100 rounded-full p-2">
+                <FaStar className="inline-block text-yellow-400" />
+                <FaStar className="inline-block text-yellow-400" />
+                <FaStar className="inline-block text-yellow-400" />
+                <FaStar className="inline-block text-yellow-400" />
+                <FaStar className="inline-block text-gray-200" />
+              </div>
+            </div>
+            <div className="w-full flex flex-row items-center justify-between">
+              <div className="w-[10%]"></div>
+              <div className="flex flex-col gap-2 w-[65%]">
+                <p className="text-[#1a1a2b] text-[14px] hover:underline">Undefined Tool IRadix DPS3000SY 2700 Watts</p>
+                <p className="text-gray-400 text-[12px]">Reviewed by Ryan Ford</p>
+              </div>
+              <div className="w-[25%] flex flex-row gap-1 text-gray-400 cursor-pointer hover:bg-gray-100 rounded-full p-2">
+                <FaStar className="inline-block text-yellow-400" />
+                <FaStar className="inline-block text-yellow-400" />
+                <FaStar className="inline-block text-yellow-400" />
+                <FaStar className="inline-block text-yellow-400" />
+                <FaStar className="inline-block text-gray-200" />
+              </div>
+            </div>
+            <div className="w-full flex flex-row items-center justify-between">
+              <div className="w-[10%]"></div>
+              <div className="flex flex-col gap-2 w-[65%]">
+                <p className="text-[#1a1a2b] text-[14px] hover:underline">Brandix Screwdriver SCREW150</p>
+                <p className="text-gray-400 text-[12px]">Reviewed by Charlotte Jones</p>
+              </div>
+              <div className="w-[25%] flex flex-row gap-1 text-gray-400 cursor-pointer hover:bg-gray-100 rounded-full p-2">
+                <FaStar className="inline-block text-yellow-400" />
+                <FaStar className="inline-block text-yellow-400" />
+                <FaStar className="inline-block text-gray-200" />
+                <FaStar className="inline-block text-gray-200" />
+                <FaStar className="inline-block text-gray-200" />
               </div>
             </div>
           </div>
