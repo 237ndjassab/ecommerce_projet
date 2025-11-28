@@ -1,13 +1,13 @@
-import { Formik, Form, type FormikHelpers } from 'formik';
-import * as Yup from 'yup';
-import { useNavigate } from 'react-router';
-import { Link } from 'react-router';
-import login from '../../assets/images/login.png'
-import Input from '../../components/ui/input';
-import Password from '../../components/ui/password';
-import useAppDispatch from '../../hooks/useAppDispatch';
-import type { LoginDto } from '../../types/user';
-import { loginAction } from '../../store/auth/actions';
+import { Formik, Form, type FormikHelpers } from "formik";
+import * as Yup from "yup";
+import { useNavigate } from "react-router";
+import { Link } from "react-router";
+import login from "../../assets/images/login.png";
+import Input from "../../components/ui/input";
+import Password from "../../components/ui/password";
+import useAppDispatch from "../../hooks/useAppDispatch";
+import type { LoginDto } from "../../types/user";
+import { loginAction } from "../../store/auth/actions";
 
 const Login = () => {
   const navigate = useNavigate();
@@ -80,7 +80,7 @@ const Login = () => {
         </div>
       </div>
     </section>
-  )
+  );
 };
 
 export default Login;

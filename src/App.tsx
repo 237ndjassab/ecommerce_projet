@@ -15,6 +15,8 @@ import ConfirmOTP from "./pages/auth/confirmOtp";
 import ResetPassword from "./pages/auth/resetPassword";
 import { Provider } from "react-redux";
 import { store } from "./store/store";
+import AdminLayout from "./layout/AdminLayout";
+import Dashboard from "./pages/Admin/Dashboard";
 
 const App: React.FC = () => {
   return (
@@ -30,7 +32,10 @@ const App: React.FC = () => {
             <Route path="about" index element={<About_us />} />
             <Route path="contact" index element={<Contact />} />
           </Route>
-
+          <Route path="/admin" element={<AdminLayout />}>
+            <Route path="/admin" element={<Navigate to={"/admin/dashboard"} />} />
+            <Route path="/admin/dashboard" index element={<Dashboard />} />
+          </Route>
           <Route path="/register" element={<Register />} />
           <Route path="/login" element={<Login />} />
           <Route path="/forgotpwd" element={<ForgotPassword />} />
