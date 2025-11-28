@@ -9,6 +9,7 @@ import Password from "../../components/ui/password";
 import useAppDispatch from "../../hooks/useAppDispatch";
 import type { RegisterDto } from "../../types/user";
 import { registerAction } from "../../store/auth/actions";
+import { toast } from "react-toastify";
 
 const Register = () => {
   const navigate = useNavigate();
@@ -40,11 +41,12 @@ const Register = () => {
     const response = await dispatch(registerAction(values));
 
     if (response.meta.requestStatus === "fulfilled") {
+      toast.success("Utilisateur connecté avec succès.");
       navigate("/login");
     }
 
     if (response.meta.requestStatus === "rejected") {
-      console.log("Register failed");
+      toast.error("Echec de connexion.");
     }
 
     formikHelpers.setSubmitting(false);
