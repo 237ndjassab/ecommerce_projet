@@ -15,32 +15,48 @@ import ConfirmOTP from "./pages/auth/confirmOtp";
 import ResetPassword from "./pages/auth/resetPassword";
 import { Provider } from "react-redux";
 import { store } from "./store/store";
+import { ToastContainer } from "react-toastify";
 
 const App: React.FC = () => {
   return (
-    <Provider store={store}>
-      <BrowserRouter>
-        <Routes>
-          <Route path="" element={<MainLayout />}>
-            <Route path="" element={<Navigate to={"/home"} />} />
-            <Route path="home" index element={<Home />} />
-            <Route path="blog" index element={<Blog />} />
-            <Route path="product" index element={<Products />} />
-            <Route path="categorie" index element={<Category />} />
-            <Route path="about" index element={<About_us />} />
-            <Route path="contact" index element={<Contact />} />
-          </Route>
+    <>
+      <Provider store={store}>
+        <BrowserRouter>
+          <Routes>
+            <Route path="" element={<MainLayout />}>
+              <Route path="" element={<Navigate to={"/home"} />} />
+              <Route path="home" index element={<Home />} />
+              <Route path="blog" index element={<Blog />} />
+              <Route path="product" index element={<Products />} />
+              <Route path="categorie" index element={<Category />} />
+              <Route path="about" index element={<About_us />} />
+              <Route path="contact" index element={<Contact />} />
+            </Route>
 
-          <Route path="/register" element={<Register />} />
-          <Route path="/login" element={<Login />} />
-          <Route path="/forgotpwd" element={<ForgotPassword />} />
-          <Route path="/confirmotp" element={<ConfirmOTP />} />
-          <Route path="/resetpwd" element={<ResetPassword />} />
+            <Route path="/register" element={<Register />} />
+            <Route path="/login" element={<Login />} />
+            <Route path="/forgotpwd" element={<ForgotPassword />} />
+            <Route path="/confirmotp" element={<ConfirmOTP />} />
+            <Route path="/resetpwd" element={<ResetPassword />} />
 
-          <Route path="*" element={<NotFound />} />
-        </Routes>
-      </BrowserRouter>
-    </Provider>
+            <Route path="*" element={<NotFound />} />
+          </Routes>
+        </BrowserRouter>
+      </Provider>
+
+      <ToastContainer
+        position="top-right"
+        autoClose={5000}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick={false}
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+        theme="light"
+      />
+    </>
   );
 };
 
