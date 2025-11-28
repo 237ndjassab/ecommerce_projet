@@ -1,12 +1,24 @@
 import { Formik, Form } from 'formik';
 import * as Yup from 'yup';
-import { useNavigate } from 'react-router';
+import { useLocation, useNavigate } from 'react-router';
 import { Link } from 'react-router';
 import reset from '../../assets/images/reset.png'
 import Password from '../../components/ui/password';
 
+
 const ResetPassword =()=>{
-const navigate = useNavigate();
+  const location = useLocation();
+  const navigate = useNavigate();
+  // const email = location.state ? location.state.email : null;
+
+  console.log(" location.state", location.state);
+  
+
+  // useEffect(() => {
+  //   if (!email) {
+  //     navigate("/forgotpwd");
+  //   }
+  // }, [navigate, email]);
 
   const initialValues = {
     email: '',
