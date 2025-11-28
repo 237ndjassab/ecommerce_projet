@@ -7,7 +7,7 @@ export const registerAction = createAsyncThunk<ApiResponse<User>, RegisterDto>(
   "auth/registerAction",
   async (data, apiThunk) => {
     try {
-      const response = await fetch("http://127.0.0.1:3000/api/auth/register", {
+      const response = await fetch("http://localhost:3000/api/auth/register", {
         method: "Post",
         headers: {
           accept: "application/json",
@@ -34,31 +34,33 @@ export const registerAction = createAsyncThunk<ApiResponse<User>, RegisterDto>(
   }
 );
 
-// export const loginAction = createAsyncThunk<ApiResponse<AuthInfo>, LoginDto>(
-//   "auth/loginAction",
-//   async (data) => {
-//     try {
-//       const response = await fetch("http://127.0.0.1:3000/api/auth/login", {
-//         method: "Post",
-//         headers: {
-//           accept: "application/json",
-//           "Content-Type": "application/json",
-//         },
-//         body: JSON.stringify(data),
-//       });
+export const loginAction = createAsyncThunk<ApiResponse<AuthInfo>, LoginDto>(
+  "auth/loginAction",
+  async (data, apiThunk) => {
+    try {
+      const response = await fetch("http://localhost:3000/api/auth/login", {
+        method: "POST",
+        headers: {
+          accept: "application/json",
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(data),
+      });
 
-//       if (!response.ok) {
-//         const error = await response.json();
-//         console.log("Failed to ctreate user: ", error);
-//         throw new Error("Failed to create user.");
-//       }
-//       const result = await response.json();
+      if (!response.ok) {
+        const error = await response.json();
+        console.log("Failed to verify user ", error);
+        return apiThunk.rejectWithValue("Failed to verify user");
+      }
+      const result = await response.json();
 
-//       console.log("Data login: ", result);
+      console.log("Data login: ", result);
 
-//       return data;
-//     } catch (error) {
-//       console.log("Errore on register resquest: ", error);
-//     }
-//   }
-// );
+      return result;
+    } catch (error) {
+      return apiThunk.rejectWithValue(
+        (error as {message: string}).message || "Failed to verify user."
+      );
+    }
+  }
+);
