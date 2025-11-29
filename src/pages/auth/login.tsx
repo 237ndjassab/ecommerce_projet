@@ -92,7 +92,7 @@ const Login = () => {
                       Vous n'avez pas encore de compte?
                     </p>
                     <Link
-                      to="/signin"
+                      to="/register"
                       className="text-[#d62243] hover:text-[#ec345f]"
                     >
                       Créez-en un!
