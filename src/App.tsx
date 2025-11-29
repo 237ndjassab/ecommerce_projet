@@ -18,6 +18,8 @@ import { store } from "./store/store";
 import AdminLayout from "./layout/AdminLayout";
 import Dashboard from "./pages/Admin/Dashboard";
 import { ToastContainer } from "react-toastify";
+import CategoryList from "./pages/Admin/catalog/categories/CategoryList";
+import AllCategories from "./pages/Admin/catalog/categories/AllCategories";
 
 const App: React.FC = () => {
   return (
@@ -37,6 +39,8 @@ const App: React.FC = () => {
           <Route path="/admin" element={<AdminLayout />}>
             <Route path="/admin" element={<Navigate to={"/admin/dashboard"} />} />
             <Route path="/admin/dashboard" index element={<Dashboard />} />
+            <Route path="/admin/categoryList" index element={<CategoryList />} />
+            <Route path="/admin/allcategory" index element={<AllCategories />} />
           </Route>
             <Route path="/register" element={<Register />} />
             <Route path="/login" element={<Login />} />
