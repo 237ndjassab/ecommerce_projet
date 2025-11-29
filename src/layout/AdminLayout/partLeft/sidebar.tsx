@@ -84,10 +84,10 @@ const SideBar = ({ isOpen }: Props) => {
                     <Link to={"/"}>Product</Link>
                   </li>
                   <li className="ml-7 cursor-pointer hover:text-white transition-all duration-300 ease-in-out">
-                    <Link to={"/"}>Category List</Link>
+                    <Link to={"/admin/categoryList"}>Category List</Link>
                   </li>
                   <li className="ml-7 cursor-pointer hover:text-white transition-all duration-300 ease-in-out">
-                    <Link to={"/"}>Category</Link>
+                    <Link to={"/admin/allcategory"}>Category</Link>
                   </li>
                 </motion.ul>
               )}
