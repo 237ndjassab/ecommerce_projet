@@ -20,6 +20,8 @@ import Dashboard from "./pages/Admin/Dashboard";
 import { ToastContainer } from "react-toastify";
 import CategoryList from "./pages/Admin/catalog/categories/CategoryList";
 import AllCategories from "./pages/Admin/catalog/categories/AllCategories";
+import AllProducts from "./pages/Admin/catalog/produits/AllProducts";
+import ProductsList from "./pages/Admin/catalog/produits/ProductsList";
 
 const App: React.FC = () => {
   return (
@@ -41,6 +43,8 @@ const App: React.FC = () => {
             <Route path="/admin/dashboard" index element={<Dashboard />} />
             <Route path="/admin/categoryList" index element={<CategoryList />} />
             <Route path="/admin/allcategory" index element={<AllCategories />} />
+            <Route path="/admin/allproducts" index element={<AllProducts />} />
+            <Route path="/admin/productList" index element={<ProductsList />} />
           </Route>
             <Route path="/register" element={<Register />} />
             <Route path="/login" element={<Login />} />
