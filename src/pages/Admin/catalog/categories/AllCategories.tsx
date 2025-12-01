@@ -1,9 +1,17 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { Link } from "react-router";
 import { FaAngleRight } from "react-icons/fa";
 import { MdSearch } from "react-icons/md";
+import useAppDispatch from "../../../../hooks/useAppDispatch";
+import { getCategory } from "../../../../store/category/actions";
+import useAppSelector from "../../../../hooks/useAppSelector";
 
 const AllCategories = () => {
+  const dispatch = useAppDispatch();
+  const ctg = useAppSelector((state) => state.category.categoryInfo);
+  useEffect(() => {
+    dispatch(getCategory());
+  }, []);
   return (
     <div className="w-full min-h-screen px-6 py-4 ">
       <div className="w-full flex flex-col mb-2">
@@ -47,10 +55,7 @@ const AllCategories = () => {
           <div className="w-full flex flex-col gap-2 px-3 shadow-md rounded-xs bg-white">
             <div className="w-full flex flex-row justify-between border-y-[1px] border-y-gray-300">
               <div className="w-[5%] py-3 px-2">
-                <input
-                  type="checkbox"
-                  className="border-gray-100"
-                />
+                <input type="checkbox" className="border-gray-100" />
               </div>
               <div className="w-[55%] py-3 px-2 hover:bg-gray-300 transition-all duration-300 ease-in-out">
                 <p className="text-gray-600 font-medium">Name</p>
@@ -62,15 +67,29 @@ const AllCategories = () => {
                 <p className="text-gray-600 font-medium">Available</p>
               </div>
             </div>
-            <div className="w-full flex flex-row border-y-[1px] border-y-gray-300">
-              <div>
-                <input
-                  type="checkbox"
-                  className="border-gray-100"
-                />
+          </div>
+          {ctg.map((category, index) => (
+            <div
+              key={index}
+              className="w-full flex flex-col gap-2 px-3 shadow-md rounded-xs bg-white"
+            >
+              <div className="w-full flex flex-row justify-between border-y-[1px] border-y-gray-300">
+                <div className="w-[5%] py-3 px-2">
+                  <input type="checkbox" className="border-gray-100" />
+                </div>
+                <div className="w-[55%] py-3 px-2 hover:bg-gray-300 transition-all duration-300 ease-in-out">
+                  <p className="text-gray-600 font-medium">{category.id}</p>
+                </div>
+                <div className="w-[20%] py-3 px-2 hover:bg-gray-300 transition-all duration-300 ease-in-out">
+                  <p className="text-gray-600 font-medium">{category.name}</p>
+                </div>
+                <div className="w-[20%] py-3 px-2 hover:bg-gray-300 transition-all duration-300 ease-in-out">
+                  <img src={category.image}
+                   alt={category.description} />
+                </div>
               </div>
             </div>
-          </div>
+          ))}
         </div>
       </div>
     </div>
