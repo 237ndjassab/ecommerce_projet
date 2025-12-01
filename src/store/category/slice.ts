@@ -1,5 +1,4 @@
 import { createSlice } from "@reduxjs/toolkit";
-import Utils from "../../helpers/Utils";
 import { getCategory } from "./actions";
 import type { ApiError, statusType } from "../../types/base";
 import type { Category } from "../../types/category";
@@ -17,7 +16,6 @@ export interface CategoryState {
       refresh: ApiError;
     };
 }
-const categoryInfoState =  Utils.getAuthInfo();
 
 const initialState: CategoryState = {
   categoryInfo: [],
@@ -46,7 +44,7 @@ export const categorySlice = createSlice({
         .addCase(getCategory.fulfilled, (state, action) => {
           state.status.login = "succeeded";
           if(action.payload){
-            state.categoryInfo = categoryInfoState
+            state.categoryInfo = action.payload.data
           }
         })
         .addCase(getCategory.rejected, (state, action) => {
