@@ -1,35 +1,34 @@
 import { createSlice } from "@reduxjs/toolkit";
 import Utils from "../../helpers/Utils";
-import { getCategory } from "./actions";
+import { deleteCategory, getAllCategory, createCategory } from "./actions";
 import type { ApiError, statusType } from "../../types/base";
 import type { Category } from "../../types/category";
 
 export interface CategoryState {
-  categoryInfo: Category[]
+  items: Category[]
   status: {
-      register: statusType;
-      login: statusType;
-      refresh: statusType;
+      getAll: statusType;
+      delete: statusType;
+      create: statusType;
     };
     error: {
-      register: ApiError;
-      login: ApiError;
-      refresh: ApiError;
+      getAll: ApiError;
+      delete: ApiError;
+      create: ApiError;
     };
 }
-const categoryInfoState =  Utils.getAuthInfo();
 
 const initialState: CategoryState = {
-  categoryInfo: [],
+  items: [],
   status: {
-    register: "idle",
-    refresh: "idle",
-    login: "idle",
+    getAll: "idle",
+    delete: "idle",
+    create: "idle",
   },
   error: {
-    register: { message: null },
-    refresh: { message: null },
-    login: { message: null },
+    getAll: { message: null },
+    delete: { message: null },
+    create: { message: null}
   },
 };
 
@@ -39,18 +38,54 @@ export const categorySlice = createSlice({
   reducers: {},
   extraReducers: (builder) => {
       builder
-        .addCase(getCategory.pending, (state) => {
-          state.status.login = "pending";
-          state.error.login = { message: null };
+        .addCase(getAllCategory.pending, (state) => {
+          state.status.getAll = "pending";
+          state.error.getAll = { message: null };
         })
-        .addCase(getCategory.fulfilled, (state, action) => {
-          state.status.login = "succeeded";
+        .addCase(getAllCategory.fulfilled, (state, action) => {
+          state.status.getAll = "succeeded";
           if(action.payload){
-            state.categoryInfo = categoryInfoState
+            state.items = action.payload.data;
           }
         })
-        .addCase(getCategory.rejected, (state, action) => {
-          state.status.login = "failed";
+        .addCase(getAllCategory.rejected, (state, action) => {
+          state.status.getAll = "failed";
+          if(action.payload){
+            // state.error.login = { message: action.payload };
+          }
+        });
+
+       builder
+        .addCase(deleteCategory.pending, (state) => {
+          state.status.delete = "pending";
+          state.error.delete = { message: null };
+        })
+        .addCase(deleteCategory.fulfilled, (state, action) => {
+          state.status.delete = "succeeded";
+          if(action.payload){
+            state.items = state.items.filter(item => item.id !== action.payload.data.id)
+          }
+        })
+        .addCase(deleteCategory.rejected, (state, action) => {
+          state.status.delete = "failed";
+          if(action.payload){
+            // state.error.login = { message: action.payload };
+          }
+        });
+
+      builder
+        .addCase(createCategory.pending, (state) => {
+          state.status.create = "pending";
+          state.error.create = { message: null };
+        })
+        .addCase(createCategory.fulfilled, (state, action) => {
+          state.status.create = "succeeded";
+          if(action.payload){
+            state.items.unshift(action.payload.data)
+          }
+        })
+        .addCase(createCategory.rejected, (state, action) => {
+          state.status.create = "failed";
           if(action.payload){
             // state.error.login = { message: action.payload };
           }
