@@ -4,7 +4,7 @@ import type { Category, CategoryDto } from "../../types/category";
 import type { ApiResponse } from "../../types/base";
 import Utils from "../../helpers/Utils";
 
-export const getCategory = createAsyncThunk<ApiResponse<Category>>(
+export const getCategory = createAsyncThunk<ApiResponse<Category[]>>(
   "category/getAll",
   async (_,apiThunk) => {
     try {
@@ -24,11 +24,6 @@ export const getCategory = createAsyncThunk<ApiResponse<Category>>(
         return apiThunk.rejectWithValue("Failed to download Categories.");
       }
       const result = await response.json();
-
-      if (result.data) {
-        Utils.setAuthInfo(result.data);
-      }
-
       return result;
     } catch (error) {
       console.log("Error on download Categories: ", error);
