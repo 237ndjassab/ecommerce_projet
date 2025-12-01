@@ -55,7 +55,8 @@ const Register = () => {
   return (
     <section className="h-dvh relative overflow-hidden flex justify-center bg-white items-center">
       <div className="flex z-10 bg-white rounded-lg shadow-lg w-[60%] h-[85%]">
-        <div className="flex flex-col px-8 text-white bg-[#1a1a2b] rounded-l-lg justify-center items-center gap-3 w-1/2">
+        <div className="flex flex-col px-8 text-white bg-[#1a1a2b] rounded-l-lg justify-center 
+        items-center gap-3 w-1/2">
           <h1 className="text-2xl font-semibold">Hey welcome!</h1>
           <p>Create your account and let's Shop!</p>
           <img src={shop} alt="" />
