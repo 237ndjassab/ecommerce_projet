@@ -22,6 +22,7 @@ import AddCategory from "./pages/Admin/catalog/categories/addCategory";
 import AllCategories from "./pages/Admin/catalog/categories/AllCategories";
 import AllProducts from "./pages/Admin/catalog/produits/AllProducts";
 import ProductsList from "./pages/Admin/catalog/produits/ProductsList";
+import UpdateCategory from "./pages/Admin/catalog/categories/updateCategory";
 
 const App: React.FC = () => {
   return (
@@ -42,6 +43,7 @@ const App: React.FC = () => {
             <Route path="/admin" element={<Navigate to={"/admin/dashboard"} />} />
             <Route path="/admin/dashboard" index element={<Dashboard />} />
             <Route path="/admin/addcategory" index element={<AddCategory />} />
+            <Route path="/admin/updatecategory" index element={<UpdateCategory />} />
             <Route path="/admin/allcategory" index element={<AllCategories />} />
             <Route path="/admin/allproducts" index element={<AllProducts />} />
             <Route path="/admin/productList" index element={<ProductsList />} />
