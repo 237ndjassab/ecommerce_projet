@@ -9,9 +9,11 @@ import useAppSelector from "../../../../hooks/useAppSelector";
 const AllCategories = () => {
   const dispatch = useAppDispatch();
   const ctg = useAppSelector((state) => state.category.categoryInfo);
+  
   useEffect(() => {
     dispatch(getCategory());
-  }, []);
+  }, [dispatch]);
+
   return (
     <div className="w-full min-h-screen px-6 py-4 ">
       <div className="w-full flex flex-col mb-2">
