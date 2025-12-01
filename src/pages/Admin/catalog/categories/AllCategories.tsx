@@ -3,16 +3,31 @@ import { Link } from "react-router";
 import { FaAngleRight } from "react-icons/fa";
 import { MdSearch } from "react-icons/md";
 import useAppDispatch from "../../../../hooks/useAppDispatch";
-import { getCategory } from "../../../../store/category/actions";
+import { deleteCategory, getAllCategory } from "../../../../store/category/actions";
 import useAppSelector from "../../../../hooks/useAppSelector";
+import { MdDelete } from "react-icons/md";
+import { FiEdit3 } from "react-icons/fi";
+import { toast } from "react-toastify";
 
 const AllCategories = () => {
   const dispatch = useAppDispatch();
-  const ctg = useAppSelector((state) => state.category.categoryInfo);
-  
+  const categories = useAppSelector((state) => state.category);
   useEffect(() => {
-    dispatch(getCategory());
+    dispatch(getAllCategory());
   }, [dispatch]);
+
+  const handleDelete = async (id:number)=>{
+    const response = await dispatch(deleteCategory(id));
+
+
+    if (response.meta.requestStatus === "fulfilled") {
+      toast.success("Categorie supprimée avec succès.");
+    }
+
+    if (response.meta.requestStatus === "rejected") {
+      toast.error("Echec de suppression de la categorie.");
+    }
+  };
 
   return (
     <div className="w-full min-h-screen px-6 py-4 ">
@@ -32,12 +47,13 @@ const AllCategories = () => {
           <h1 className="font-semibold text-3xl text-[#1a1a2b]">
             All Category
           </h1>
-          <button
+          <Link
+            to='/admin/addcategory'
             type="submit"
-            className=" bg-yellow-600 hover:bg-yellow-400 transition-all duration-300 ease-in-out border-[1px] border-gray-200 rounded-md cursor-pointer px-2.5 py-1.5  hover:shadow-md text-base flex flex-row justify-center items-center"
+            className=" bg-[#fa3253] hover:bg-[#fa173d] transition-all duration-300 ease-in-out text-white rounded-md cursor-pointer px-2.5 py-1.5  hover:shadow-md text-base flex flex-row justify-center items-center"
           >
             New Category
-          </button>
+          </Link>
         </div>
         <div className="w-full flex flex-col gap-2 py-5 border-[1px] border-gray-100 shadow-md rounded-xs bg-white hover:shadow-md transition-all duration-300 ease-in-out">
           <div className="flex flex-row items-center gap-2 px-3 w-full">
@@ -59,18 +75,24 @@ const AllCategories = () => {
               <div className="w-[5%] py-3 px-2">
                 <input type="checkbox" className="border-gray-100" />
               </div>
-              <div className="w-[55%] py-3 px-2 hover:bg-gray-300 transition-all duration-300 ease-in-out">
-                <p className="text-gray-600 font-medium">Name</p>
+              <div className="w-[5%] py-3 px-2 hover:bg-gray-300 transition-all duration-300 ease-in-out">
+                <p className="text-gray-600 font-medium">Numero</p>
               </div>
               <div className="w-[20%] py-3 px-2 hover:bg-gray-300 transition-all duration-300 ease-in-out">
-                <p className="text-gray-600 font-medium">Items</p>
+                <p className="text-gray-600 font-medium">Nom</p>
               </div>
               <div className="w-[20%] py-3 px-2 hover:bg-gray-300 transition-all duration-300 ease-in-out">
-                <p className="text-gray-600 font-medium">Available</p>
+                <p className="text-gray-600 font-medium">Description</p>
+              </div>
+              <div className="w-[20%] py-3 px-2 hover:bg-gray-300 transition-all duration-300 ease-in-out">
+                <p className="text-gray-600 font-medium">Image</p>
+              </div>
+              <div className="w-[10%] py-3 px-2 hover:bg-gray-300 transition-all duration-300 ease-in-out">
+                <p className="text-gray-600 font-medium">Actions</p>
               </div>
             </div>
           </div>
-          {ctg.map((category, index) => (
+          {categories.items.map((category, index) => (
             <div
               key={index}
               className="w-full flex flex-col gap-2 px-3 shadow-md rounded-xs bg-white"
@@ -79,15 +101,22 @@ const AllCategories = () => {
                 <div className="w-[5%] py-3 px-2">
                   <input type="checkbox" className="border-gray-100" />
                 </div>
-                <div className="w-[55%] py-3 px-2 hover:bg-gray-300 transition-all duration-300 ease-in-out">
+                <div className="w-[5%] py-3 px-2 hover:bg-gray-300 transition-all duration-300 ease-in-out">
                   <p className="text-gray-600 font-medium">{category.id}</p>
                 </div>
                 <div className="w-[20%] py-3 px-2 hover:bg-gray-300 transition-all duration-300 ease-in-out">
                   <p className="text-gray-600 font-medium">{category.name}</p>
                 </div>
                 <div className="w-[20%] py-3 px-2 hover:bg-gray-300 transition-all duration-300 ease-in-out">
+                  <p className="text-gray-600 font-medium">{category.description}</p>
+                </div>
+                <div className="w-[20%] py-3 px-2 hover:bg-gray-300 transition-all duration-300 ease-in-out">
                   <img src={category.image}
                    alt={category.description} />
+                </div>
+                <div className="w-[10%] py-3 px-2 hover:bg-gray-300 transition-all duration-300 ease-in-out">
+                  <button onClick={()=>handleDelete(category.id)} className="text-red-500 mr-4 text-2xl"><MdDelete /></button>
+                  <button className="text-green-500 text-2xl"><FiEdit3 /></button>
                 </div>
               </div>
             </div>

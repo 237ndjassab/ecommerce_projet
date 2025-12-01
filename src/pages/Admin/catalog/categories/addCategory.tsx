@@ -10,7 +10,7 @@ import useAppDispatch from "../../../../hooks/useAppDispatch";
 import { toast } from "react-toastify";
 import { useNavigate } from "react-router";
 
-const CategoryList = () => {
+const AddCategory = () => {
   const navigate = useNavigate()
   const dispatch = useAppDispatch()
   const [preview, setPreview] = useState<string | null>(null);
@@ -42,7 +42,7 @@ const CategoryList = () => {
         }
       )
       .test("fileSize", "Fichier trop grand", (value) => {
-        const maxSizeInBytes = 2 * 1024 * 1024;
+        const maxSizeInBytes = 8 * 1024 * 1024;
         if (value) {
           return value.size <= maxSizeInBytes;
         } else {
@@ -91,7 +91,7 @@ const CategoryList = () => {
                   <h1 className="font-semibold text-3xl text-[#1a1a2b]">
                     Edit Category
                   </h1>
-                  <button type="submit" disabled={formik.isSubmitting} className=" bg-yellow-600 hover:bg-yellow-400 transition-all duration-300 ease-in-out border-[1px] border-gray-200 rounded-md cursor-pointer px-2.5 py-1.5  hover:shadow-md text-base flex flex-row justify-center items-center">
+                  <button type="submit" disabled={formik.isSubmitting} className=" bg-[#fa3253] hover:bg-[#fa173d] text-white transition-all duration-300 ease-in-out border-[1px] border-gray-200 rounded-md cursor-pointer px-2.5 py-1.5  hover:shadow-md text-base flex flex-row justify-center items-center">
                     {formik.isSubmitting ? "creation..." : " créer"}
                   </button>
                 </div>
@@ -178,4 +178,4 @@ const CategoryList = () => {
   );
 };
 
-export default CategoryList;
+export default AddCategory;

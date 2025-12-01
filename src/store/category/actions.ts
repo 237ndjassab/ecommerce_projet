@@ -4,7 +4,7 @@ import type { Category, CategoryDto } from "../../types/category";
 import type { ApiResponse } from "../../types/base";
 import Utils from "../../helpers/Utils";
 
-export const getCategory = createAsyncThunk<ApiResponse<Category[]>>(
+export const getAllCategory = createAsyncThunk<ApiResponse<Category[]>>(
   "category/getAll",
   async (_,apiThunk) => {
     try {
@@ -24,6 +24,7 @@ export const getCategory = createAsyncThunk<ApiResponse<Category[]>>(
         return apiThunk.rejectWithValue("Failed to download Categories.");
       }
       const result = await response.json();
+
       return result;
     } catch (error) {
       console.log("Error on download Categories: ", error);
@@ -35,8 +36,8 @@ export const getCategory = createAsyncThunk<ApiResponse<Category[]>>(
   }
 );
 
-export const createCategory = createAsyncThunk<ApiResponse<CategoryDto>, CategoryDto>(
-  "category/getAll",
+export const createCategory = createAsyncThunk<ApiResponse<Category>, CategoryDto>(
+  "category/createCategory",
   async (data,apiThunk) => {
     const formdata = new FormData();
 formdata.append("name", data.name);
@@ -60,18 +61,46 @@ formdata.append("image", data.image);
         console.log("Failed to create Categories: ", error);
         return apiThunk.rejectWithValue("Failed to create Categories.");
       }
+      
       const result = await response.json();
-
-      if (result.data) {
-        Utils.setAuthInfo(result.data);
-      }
-
       return result;
     } catch (error) {
       console.log("Error on create Categories: ", error);
       return apiThunk.rejectWithValue(
         (error as { message: string }).message ||
           "Error on create Categories."
+      );
+    }
+  }
+);
+
+export const deleteCategory = createAsyncThunk<ApiResponse<Category>,number>(
+  "category/deleteCategory",
+  async (id,apiThunk) => {
+    try {
+      const response = await fetch(
+        `${import.meta.env.VITE_API_URL}/categories/${id}`,
+        {
+          method: "DELETE",
+          headers: {
+            accept: "application/json",
+          },
+        }
+      );
+
+      if (!response.ok) {
+        const error = await response.json();
+        console.log("Failed to delete Categories: ", error);
+        return apiThunk.rejectWithValue("Failed to delete Categories.");
+      }
+      const result = await response.json();
+
+      return result;
+    } catch (error) {
+      console.log("Error on delete Categories: ", error);
+      return apiThunk.rejectWithValue(
+        (error as { message: string }).message ||
+          "Error on delete Categories."
       );
     }
   }
