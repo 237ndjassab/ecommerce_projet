@@ -1,9 +1,95 @@
-import React from 'react'
+import landing from "../../assets/images/landingrbg.png";
+import { TbCategory } from "react-icons/tb";
+import shoe1 from "../../assets/images/shoe1.jpg";
+import shoe2 from "../../assets/images/shoe2.jpg";
+import shoe3 from "../../assets/images/shoe3.jpg";
+import shoe4 from "../../assets/images/shoe4.jpg";
 
 const Home = () => {
   return (
-    <div>Home</div>
+    <>
+      <section className="relative bg-[#fa3253]/20 py-30">
+        <div className="flex flex-col ml-20">
+          <div className="flex">
+            <h1 className="text-8xl text-[#fa3253] font-medium"><b className="text-[#fff]">E</b>ntry</h1>
+            <h1 className="text-8xl tracking-tighter text-[#fa3253] font-medium"><b className="text-[#fff]">S</b>hop</h1>
+          </div>
+          <p className="font-medium mt-6 text-2xl pl-2">Quality at your service</p>
+        </div>
+        <img src={landing} className="absolute bottom-0 right-0" alt="" />
+      </section>
+      <section className="flex">
+        <div className="w-1/4 h-1/2 p-2 relative">
+          <div className="border-[#000]/20 ml-8 rounded-xl shadow-md w-[90%] bg-[#1a1a2b]/10 absolute -top-14">
+            <div className=" border-b bg-white border-[#000]/10 rounded-t-sm p-4 ">
+              <span className="flex items-center gap-2">
+                <TbCategory />
+                <p className="">All Categories</p>
+              </span>
+            </div>
+            <div className=" rounded-b-2xl">
+              <ul className="rounded-b-2xl pb-2 px-2 text-sm">
+                <li className="px-4 py-3 border-b border-[#000]/10">lorem ipsum dolor</li>
+                <li className="px-4 py-3 border-b border-[#000]/10">lorem ipsum dolor</li>
+                <li className="px-4 py-3 border-b border-[#000]/10">lorem ipsum dolor</li>
+                <li className="px-4 py-3 border-b border-[#000]/10">lorem ipsum dolor</li>
+                <li className="px-4 py-3 border-b border-[#000]/10">lorem ipsum dolor</li>
+                <li className="px-4 py-3 border-b border-[#000]/10">lorem ipsum dolor</li>
+                <li className="px-4 py-3 border-b border-[#000]/10">lorem ipsum dolor</li>
+                <li className="px-4 py-3 ">lorem ipsum dolor</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+        <div className="p-8 grid grid-cols-3 w-3/4 gap-4">
+          <div className="bg-white border border-[#000]/10 rounded-xl shadow-md overflow-hidden hover:shadow-lg transition-shadow duration-300">
+            <img className="w-full" src={shoe1} alt="Product Image"/>
+            <div className="p-4">
+              <span className="text-sm text-gray-500 uppercase tracking-wide">Chaussure</span>
+              <h2 className="mt-2 text-lg font-semibold">Basket</h2>
+              <p className="mt-1 text-lg font-bold">$49.99</p>
+              <button className="mt-4 w-full bg-[#fa3253] text-white py-2 px-4 rounded-lg hover:bg-[#fa183e] transition-colors duration-300">
+                Order
+              </button>
+            </div>
+          </div>
+          <div className="bg-white border border-[#000]/10 rounded-xl shadow-md overflow-hidden hover:shadow-lg transition-shadow duration-300">
+            <img className="w-full" src={shoe2} alt="Product Image"/>
+            <div className="p-4">
+              <span className="text-sm text-gray-500 uppercase tracking-wide">Chaussure</span>
+              <h2 className="mt-2 text-lg font-semibold">Basket</h2>
+              <p className="mt-1 text-lg font-bold">$49.99</p>
+              <button className="mt-4 w-full bg-[#fa3253] text-white py-2 px-4 rounded-lg hover:bg-[#fa183e] transition-colors duration-300">
+                Order
+              </button>
+            </div>
+          </div>
+          <div className="bg-white border border-[#000]/10 rounded-xl shadow-md overflow-hidden hover:shadow-lg transition-shadow duration-300">
+            <img className="w-full" src={shoe3} alt="Product Image"/>
+            <div className="p-4">
+              <span className="text-sm text-gray-500 uppercase tracking-wide">Chaussure</span>
+              <h2 className="mt-2 text-lg font-semibold">Basket</h2>
+              <p className="mt-1 text-lg font-bold">$49.99</p>
+              <button className="mt-4 w-full bg-[#fa3253] text-white py-2 px-4 rounded-lg hover:bg-[#fa183e] transition-colors duration-300">
+                Order
+              </button>
+            </div>
+          </div>
+          <div className="bg-white border border-[#000]/10 rounded-xl shadow-md overflow-hidden hover:shadow-lg transition-shadow duration-300">
+            <img className="w-full" src={shoe4} alt="Product Image"/>
+            <div className="p-4">
+              <span className="text-sm text-gray-500 uppercase tracking-wide">Chaussure</span>
+              <h2 className="mt-2 text-lg font-semibold">Basket</h2>
+              <p className="mt-1 text-lg font-bold">$49.99</p>
+              <button className="mt-4 w-full bg-[#fa3253] text-white py-2 px-4 rounded-lg hover:bg-[#fa183e] transition-colors duration-300">
+                Order
+              </button>
+            </div>
+          </div>
+        </div>
+      </section>
+    </>
   )
 }
 
-export default Home
+export default Home;
