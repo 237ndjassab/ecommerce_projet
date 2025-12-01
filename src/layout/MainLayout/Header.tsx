@@ -3,7 +3,6 @@ import { FaSearch } from "react-icons/fa";
 import { BiUser } from "react-icons/bi";
 import { FaRegHeart } from "react-icons/fa";
 import { MdOutlineShoppingCart } from "react-icons/md";
-import { TbCategory } from "react-icons/tb";
 import { BsFlower1 } from "react-icons/bs";
 import logo from "../../assets/images/logo.png";
 import collection2 from "../../assets/images/collection-2.jpg";
@@ -86,13 +85,7 @@ const Header = () => {
           </div>
         </div>
       </div>
-      <div className="flex justify-between items-center px-8">
-        <div className="bg-white border-b border-[#ebebeb] rounded-t-sm p-4 w-2/9">
-          <span className="flex items-center gap-2">
-            <TbCategory />
-            <p className="">All Categories</p>
-          </span>
-        </div>
+      <div className="flex justify-between items-center px-8 py-4">
         <div className="text-white mr-60">
           <ul className="list-none flex gap-10">
             <li>

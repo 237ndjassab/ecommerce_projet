@@ -5,12 +5,12 @@ import Advantages from "./advantages";
 
 const MainLayout = () => {
   return (
-    <section className="">
+    <section>
       <section>
-        <div className="h-20 w-full">
+        <div>
             <Header/>
         </div>
-        <main className="bg-white rounded-xl w-full h-[calc(100dvh-80px)] overflow-y-scroll">
+        <main>
             <Outlet/>
         </main>
         <div>
