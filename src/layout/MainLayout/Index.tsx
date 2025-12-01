@@ -10,7 +10,7 @@ const MainLayout = () => {
         <div className="h-20 w-full">
             <Header/>
         </div>
-        <main className="bg-white rounded-xl w-full h-[calc(100dvh-80px)] overflow-y-scroll">
+        <main className="bg-white rounded-xl w-full min-h-[calc(100vh-80px)]">
             <Outlet/>
         </main>
         <div>
