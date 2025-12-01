@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-import { Link } from "react-router";
+import { Link, useNavigate } from "react-router";
 import { FaAngleRight } from "react-icons/fa";
 import { MdSearch } from "react-icons/md";
 import useAppDispatch from "../../../../hooks/useAppDispatch";
@@ -10,6 +10,7 @@ import { FiEdit3 } from "react-icons/fi";
 import { toast } from "react-toastify";
 
 const AllCategories = () => {
+  const navigate = useNavigate();
   const dispatch = useAppDispatch();
   const categories = useAppSelector((state) => state.category);
   useEffect(() => {
@@ -28,6 +29,11 @@ const AllCategories = () => {
       toast.error("Echec de suppression de la categorie.");
     }
   };
+
+  const handleUpdate = async (id:number)=>{
+    navigate("/admin/updatecategory", {state: id});
+  }
+
 
   return (
     <div className="w-full min-h-screen px-6 py-4 ">
@@ -114,9 +120,9 @@ const AllCategories = () => {
                   <img src={category.image}
                    alt={category.description} />
                 </div>
-                <div className="w-[10%] py-3 px-2 hover:bg-gray-300 transition-all duration-300 ease-in-out">
-                  <button onClick={()=>handleDelete(category.id)} className="text-red-500 mr-4 text-2xl"><MdDelete /></button>
-                  <button className="text-green-500 text-2xl"><FiEdit3 /></button>
+                <div className="w-[10%] py-3 px-2 transition-all duration-300 ease-in-out">
+                  <button onClick={()=>handleDelete(category.id)} className="text-red-500 mr-4 hover:text-red-600 text-2xl"><MdDelete /></button>
+                  <button onClick={()=>handleUpdate(category.id)} className="text-green-500 hover:text-green-600 text-2xl"><FiEdit3 /></button>
                 </div>
               </div>
             </div>
