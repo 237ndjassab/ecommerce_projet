@@ -103,24 +103,24 @@ const AllCategories = () => {
               key={index}
               className="w-full flex flex-col gap-2 px-3 shadow-md rounded-xs bg-white"
             >
-              <div className="w-full flex flex-row justify-between border-y-[1px] border-y-gray-300">
+              <div className="w-full flex flex-row justify-between border-y-[1px] border-y-gray-300 items-center">
                 <div className="w-[5%] py-3 px-2">
                   <input type="checkbox" className="border-gray-100" />
                 </div>
-                <div className="w-[5%] py-3 px-2 hover:bg-gray-300 transition-all duration-300 ease-in-out">
+                <div className="w-[5%] py-3 px-2 hover:bg-gray-300 transition-all duration-300 ease-in-out items-center">
                   <p className="text-gray-600 font-medium">{category.id}</p>
                 </div>
-                <div className="w-[20%] py-3 px-2 hover:bg-gray-300 transition-all duration-300 ease-in-out">
+                <div className="w-[20%] py-3 px-2 hover:bg-gray-300 transition-all duration-300 ease-in-out items-center">
                   <p className="text-gray-600 font-medium">{category.name}</p>
                 </div>
-                <div className="w-[20%] py-3 px-2 hover:bg-gray-300 transition-all duration-300 ease-in-out">
+                <div className="w-[20%] py-3 px-2 hover:bg-gray-300 transition-all duration-300 ease-in-out items-center">
                   <p className="text-gray-600 font-medium">{category.description}</p>
                 </div>
-                <div className="w-[20%] py-3 px-2 hover:bg-gray-300 transition-all duration-300 ease-in-out">
-                  <img src={category.image}
+                <div className=" py-3 px-2 hover:bg-gray-300 transition-all duration-300 ease-in-out">
+                  <img src={category.image} className="w-[50px]"
                    alt={category.description} />
                 </div>
-                <div className="w-[10%] py-3 px-2 transition-all duration-300 ease-in-out">
+                <div className="w-[10%] py-3 px-2 transition-all duration-300 ease-in-out  flex flex-row gap-3">
                   <button onClick={()=>handleDelete(category.id)} className="text-red-500 mr-4 hover:text-red-600 text-2xl"><MdDelete /></button>
                   <button onClick={()=>handleUpdate(category.id)} className="text-green-500 hover:text-green-600 text-2xl"><FiEdit3 /></button>
                 </div>

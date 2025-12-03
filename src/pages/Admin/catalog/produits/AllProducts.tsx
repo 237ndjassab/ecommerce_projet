@@ -3,7 +3,7 @@ import { Link } from "react-router";
 import { FaAngleRight } from "react-icons/fa";
 import { MdSearch } from "react-icons/md";
 
-const AllProducts = () => {
+const AllProducts: React.FC = () => {
   return (
     <div className="w-full min-h-screen px-6 py-4 ">
       <div className="w-full flex flex-col mb-2">
