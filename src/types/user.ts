@@ -46,3 +46,9 @@ export type VerifyOtpDto = {
   email: string;
   otp: string;
 };
+
+export type ResetPasswordDto = {
+  email: string;
+  password: string;
+};
+

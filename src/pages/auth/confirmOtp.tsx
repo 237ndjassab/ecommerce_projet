@@ -21,12 +21,13 @@ const ConfirmOTP = () => {
       navigate("/forgotpwd");
     }
   }, [navigate, email]);
-
-  const handleSubmit = async () => {
+  const handleSubmit = async (e: React.FormEvent<HTMLButtonElement>) => {
+    e.preventDefault();
     if (otp) {
       const response = await dispatch(verifyOtpAction({ email, otp: otp }));
 
       if (response.meta.requestStatus === "fulfilled") {
+        toast.success("OTP verifié avec succès.");
         navigate("/resetpwd", { state: { email } });
       }
 
@@ -86,7 +87,7 @@ const ConfirmOTP = () => {
                 }}
               />
               <button
-                onClick={() => handleSubmit()}
+                onClick={handleSubmit}
                 type="submit"
                 className="bg-[#d62243] hover:bg-[#ee1e4e] cursor-pointer shadow-lg font-medium text-center rounded-full py-1 text-white w-50"
               >
