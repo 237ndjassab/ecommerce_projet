@@ -1,13 +1,23 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import NavProducts from "../../../Main/Produits/components/NavProducts";
 import { Link } from "react-router";
 import { Formik, Form, type FormikHelpers, ErrorMessage } from "formik";
 import * as Yup from "yup";
 import InputField from "../../../Main/Produits/components/FooterProductDescribe/InputField";
 import TextareaField from "../../../Main/Produits/components/FooterProductDescribe/TextareaField";
+import { getAllCategory } from "../../../../store/category/actions";
+import useAppSelector from "../../../../hooks/useAppSelector";
+import useAppDispatch from "../../../../hooks/useAppDispatch";
 
 const ProductsList = () => {
   const [preview, setPreview] = useState<string | null>(null);
+  const dispatch = useAppDispatch();
+  const categories = useAppSelector((state) => state.category);
+
+  useEffect(() => {
+    dispatch(getAllCategory());
+  }, [dispatch]);
+
   const initialValues = {
     name: "",
     image: "",
@@ -100,6 +110,20 @@ const ProductsList = () => {
                         className="border border-gray-600 text-gray-600 p-2 rounded w-full outline-0 hover:shadow "
                       />
                     </div>
+
+<div className="flex flex-col gap-2 w-full">
+                      <label
+                        htmlFor="image"
+                        className="font-medium text-gray-400"
+                      >
+                        category
+                      </label>
+                      <select name="categoryId" id="">
+                        <option value="">~~ Sélectionner une catégorie ~~</option>
+                        {categories.items.map((item, index)=> (<option value={item.id}>{item.name}</option>))}
+                      </select>
+                    </div>
+
                     <div className="flex flex-col gap-2 w-full">
                       <label
                         htmlFor="image"
@@ -170,7 +194,7 @@ const ProductsList = () => {
                           className="border border-gray-600 text-gray-600 bg-gray-200 p-2 rounded outline-0 hover:shadow "
                         />
                       </div>
-                      <div className="flex flex-col gap-2 w-1/3">
+                      {/* <div className="flex flex-col gap-2 w-1/3">
                         <label
                           htmlFor="categoryID"
                           className="font-medium text-gray-400"
@@ -182,7 +206,7 @@ const ProductsList = () => {
                           id="categoryID"
                           className="border border-gray-600 text-gray-600 bg-gray-200 p-2 rounded outline-0 hover:shadow "
                         />
-                      </div>
+                      </div> */}
                     </div>
                   </div>
                   {preview && (

@@ -39,15 +39,17 @@ const App: React.FC = () => {
               <Route path="about" index element={<About_us />} />
               <Route path="contact" index element={<Contact />} />
             </Route>
-          <Route path="/admin" element={<AdminLayout />}>
-            <Route path="/admin" element={<Navigate to={"/admin/dashboard"} />} />
-            <Route path="/admin/dashboard" index element={<Dashboard />} />
-            <Route path="/admin/addcategory" index element={<AddCategory />} />
-            <Route path="/admin/updatecategory" index element={<UpdateCategory />} />
-            <Route path="/admin/allcategory" index element={<AllCategories />} />
-            <Route path="/admin/allproducts" index element={<AllProducts />} />
-            <Route path="/admin/productList" index element={<ProductsList />} />
-          </Route>
+
+            <Route path="/admin" element={<AdminLayout />}>
+              <Route path="/admin" element={<Navigate to={"/admin/dashboard"} />} />
+              <Route path="/admin/dashboard" index element={<Dashboard />} />
+              <Route path="/admin/addcategory" index element={<AddCategory />} />
+              <Route path="/admin/updatecategory" index element={<UpdateCategory />} />
+              <Route path="/admin/allcategory" index element={<AllCategories />} />
+              <Route path="/admin/allproducts" index element={<AllProducts />} />
+              <Route path="/admin/productList" index element={<ProductsList />} />
+            </Route>
+          
             <Route path="/register" element={<Register />} />
             <Route path="/login" element={<Login />} />
             <Route path="/forgotpwd" element={<ForgotPassword />} />
