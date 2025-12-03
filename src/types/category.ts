@@ -10,3 +10,9 @@ export interface CategoryDto {
   image: string | File ;
   description: string;
 }
+export interface CategoryDtoUpdate {
+  id: number;
+  name: string;
+  image: string | File ;
+  description: string;
+}
