@@ -5,7 +5,7 @@ import * as Yup from "yup";
 import InputField from "../../../Main/Produits/components/FooterProductDescribe/InputField";
 import TextareaField from "../../../Main/Produits/components/FooterProductDescribe/TextareaField";
 import type { CategoryDto } from "../../../../types/category";
-import { createCategory } from "../../../../store/category/actions";
+import { updateCategory } from "../../../../store/category/actions";
 import useAppDispatch from "../../../../hooks/useAppDispatch";
 import { toast } from "react-toastify";
 import { useLocation, useNavigate } from "react-router";
@@ -73,11 +73,17 @@ const UpdateCategory = () => {
     );
 
   const handleSubmit = async (
+      idcategory: number | null,
       values: CategoryDto,
       formikHelpers: FormikHelpers<CategoryDto>
     ) => {
       formikHelpers.setSubmitting(true);
-      const response = await dispatch(createCategory(values));
+      const response = await dispatch(updateCategory({
+        id: idcategory as number,
+        name: values.name,
+        description: values.description,
+        image: values.image,
+      }));
   
       if (response.meta.requestStatus === "fulfilled") {
         toast.success("Categorie mise a jour avec succès.");
@@ -104,7 +110,9 @@ const UpdateCategory = () => {
         <Formik
           initialValues={initialValues}
           validationSchema={validationSchema}
-          onSubmit={handleSubmit}
+          onSubmit={(values, formikHelpers) => {
+            handleSubmit(idcategory, values, formikHelpers);
+          }}
         >
           {(formik) => {
             return (
@@ -114,7 +122,7 @@ const UpdateCategory = () => {
                     Edit Category
                   </h1>
                   <button type="submit" disabled={formik.isSubmitting} className=" bg-[#fa3253] hover:bg-[#fa173d] text-white transition-all duration-300 ease-in-out border-[1px] border-gray-200 rounded-md cursor-pointer px-2.5 py-1.5  hover:shadow-md text-base flex flex-row justify-center items-center">
-                    {formik.isSubmitting ? "creation..." : " créer"}
+                    {formik.isSubmitting ? "modification..." : " modifier"}
                   </button>
                 </div>
                 <div className="w-full flex flex-row gap-5 p-5 border-[1px] border-gray-100 shadow-md rounded-xs bg-white hover:shadow-md transition-all duration-300 ease-in-out">
