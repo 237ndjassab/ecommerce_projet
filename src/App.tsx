@@ -23,8 +23,10 @@ import AllCategories from "./pages/Admin/catalog/categories/AllCategories";
 import AllProducts from "./pages/Admin/catalog/produits/AllProducts";
 import ProductsList from "./pages/Admin/catalog/produits/ProductsList";
 import UpdateCategory from "./pages/Admin/catalog/categories/updateCategory";
+import ProtectRoute from "./components/common/ProtectRoute";
 
 const App: React.FC = () => {
+  
   return (
     <>
       <Provider store={store}>
@@ -40,7 +42,7 @@ const App: React.FC = () => {
               <Route path="contact" index element={<Contact />} />
             </Route>
 
-            <Route path="/admin" element={<AdminLayout />}>
+            <Route path="/admin" element={<ProtectRoute><AdminLayout /></ProtectRoute> }>
               <Route path="/admin" element={<Navigate to={"/admin/dashboard"} />} />
               <Route path="/admin/dashboard" index element={<Dashboard />} />
               <Route path="/admin/addcategory" index element={<AddCategory />} />

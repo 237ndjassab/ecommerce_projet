@@ -1,3 +1,5 @@
+import type { AppDispatch, RootState } from "../store/store";
+
 export interface BaseEntity {
   id: number;
   createdAt: string | Date;
@@ -22,3 +24,14 @@ export interface ApiResponse<T> {
 }
 
 export type statusType = "idle" | "pending" | "succeeded" | "failed";
+
+export interface ApiThunk {
+  state: RootState;
+  dispatch: AppDispatch;
+  extra: unknown;
+  rejectValue: ApiError;
+  serializedErrorType?: unknown;
+  pendingMeta?: unknown;
+  fulfilledMeta?: unknown;
+  // rejectedMeta?: unknown;
+}
