@@ -15,8 +15,11 @@ export interface Product extends BaseEntity {
 }
 export interface ProductDto {
   name: string;
-  image: string | File;
+  price: number;
+  quantity: number;
+  images: ProductImage;
   description: string;
+  categoryId: number;
 }
 export interface ProductDtoUpdate {
   id: number;

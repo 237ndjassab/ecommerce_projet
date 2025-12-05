@@ -46,7 +46,20 @@ export const createProduct = createAsyncThunk<
   const formdata = new FormData();
   formdata.append("name", data.name);
   formdata.append("description", data.description);
-  formdata.append("image", data.image);
+  formdata.append("price", data.price.toString());
+  formdata.append("categoryId", data.categoryId.toString());
+  // ----- Images -----
+  // 1 image principale
+  if (data.images.image) {
+    formdata.append("image", data.images.image);
+  }
+
+  // Plusieurs images (gallery)
+  if (data.images.gallery && data.images.gallery.length > 0) {
+    data.images.gallery.forEach((file) => {
+      formdata.append("gallery", file); // IMPORTANT : même clé répétée
+    });
+  }
 
   try {
     const response = await fetch(`${import.meta.env.VITE_API_URL}/products`, {
