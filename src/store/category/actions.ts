@@ -6,6 +6,7 @@ import type {
   CategoryDtoUpdate,
 } from "../../types/category";
 import type { ApiResponse } from "../../types/base";
+import fetchWithAuth from "../../services/fetchWithAuth.service";
 
 export const getAllCategory = createAsyncThunk<ApiResponse<Category[]>>(
   "category/getAll",
@@ -49,13 +50,13 @@ export const createCategory = createAsyncThunk<
   formdata.append("image", data.image);
 
   try {
-    const response = await fetch(`${import.meta.env.VITE_API_URL}/categories`, {
-      method: "POST",
-      headers: {
-        accept: "application/json",
-      },
-      body: formdata,
-    });
+    const response = await fetchWithAuth(
+      `${import.meta.env.VITE_API_URL}/categories`,
+      {
+        method: "POST",
+        body: formdata,
+      }
+    );
 
     if (!response.ok) {
       const error = await response.json();
@@ -77,13 +78,10 @@ export const deleteCategory = createAsyncThunk<ApiResponse<Category>, number>(
   "category/deleteCategory",
   async (id, apiThunk) => {
     try {
-      const response = await fetch(
+      const response = await fetchWithAuth(
         `${import.meta.env.VITE_API_URL}/categories/${id}`,
         {
           method: "DELETE",
-          headers: {
-            accept: "application/json",
-          },
         }
       );
 
@@ -114,14 +112,11 @@ export const updateCategory = createAsyncThunk<
   formdata.append("image", category.image);
   console.log("categorie image", category.image);
   try {
-    const response = await fetch(
+    const response = await fetchWithAuth(
       `${import.meta.env.VITE_API_URL}/categories/${category.id}`,
       {
         method: "PUT",
-        headers: {
-        accept: "application/json",
-      },
-      body: formdata,
+        body: formdata,
       }
     );
 
