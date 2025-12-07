@@ -6,3 +6,16 @@
 body {
     font-family: 'Poppins', sans-serif;
 }
+
+@theme {
+  --animate-eyeInfinite: eyeInfinite 1s ease-in-out infinite;
+  @keyframes eyeInfinite {
+    0%,
+    100% {
+      opacity: 1;
+    }
+    50% {
+      opacity: 0;
+    }
+  }
+}
