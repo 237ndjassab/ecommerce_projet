@@ -7,7 +7,7 @@ import { BsFlower1 } from "react-icons/bs";
 import logo from "../../assets/images/logo.png";
 import collection2 from "../../assets/images/collection-2.jpg";
 import collection3 from "../../assets/images/collection-3.jpg";
-import { Link } from "react-router";
+import { Link, NavLink } from "react-router";
 import useAppSelector from "../../hooks/useAppSelector";
 
 const Header = () => {
@@ -89,16 +89,29 @@ const Header = () => {
         <div className="text-white mr-60">
           <ul className="list-none flex gap-10">
             <li>
-              <a
-                href="#"
-                className="hover:text-[#fa3253] transition-all duration-150 font-medium"
+              <NavLink
+                to="home"
+                className={({ isActive }) =>
+                  isActive
+                    ? "text-[#fa3253] transition-all duration-150 font-medium"
+                    : "hover:text-[#fa3253] transition-all duration-150 font-medium"
+                }
               >
                 Home
-              </a>
+              </NavLink>
             </li>
             <div className="">
               <li className="flex items-center gap-2 hover:text-[#fa3253] transition-all duration-150 font-medium">
-                <a href="#">Shop</a>
+                <NavLink
+                  to="categorie"
+                  className={({ isActive }) =>
+                    isActive
+                      ? "text-[#fa3253] transition-all duration-150 font-medium"
+                      : "hover:text-[#fa3253] transition-all duration-150 font-medium"
+                  }
+                >
+                  Shop
+                </NavLink>
                 <FaChevronDown className="text-xs mt-1" />
               </li>
               <div className="hidden gap-8 bg-white shadow-md p-4 text-black absolute -bottom-90">
@@ -222,12 +235,16 @@ const Header = () => {
               </div>
             </div>
             <li>
-              <a
-                href="#"
-                className="hover:text-[#fa3253] transition-all duration-150 font-medium"
-              >
-                Products
-              </a>
+              <NavLink
+                  to="product"
+                  className={({ isActive }) =>
+                    isActive
+                      ? "text-[#fa3253] transition-all duration-150 font-medium"
+                      : "hover:text-[#fa3253] transition-all duration-150 font-medium"
+                  }
+                >
+                  Products
+                </NavLink>
             </li>
             <li>
               <a
