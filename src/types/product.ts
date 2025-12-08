@@ -4,6 +4,9 @@ export interface ProductImage {
   image: string;
   gallery: string[];
 }
+export interface CategoryForProduct {
+  name: string
+}
 
 export interface Product extends BaseEntity {
   name: string;
@@ -12,6 +15,7 @@ export interface Product extends BaseEntity {
   images: ProductImage;
   description: string;
   categoryId: number;
+  category: CategoryForProduct;
 }
 export interface ProductDto {
   name: string;

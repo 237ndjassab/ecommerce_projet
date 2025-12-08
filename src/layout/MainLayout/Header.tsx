@@ -236,39 +236,51 @@ const Header = () => {
             </div>
             <li>
               <NavLink
-                  to="product"
-                  className={({ isActive }) =>
-                    isActive
-                      ? "text-[#fa3253] transition-all duration-150 font-medium"
-                      : "hover:text-[#fa3253] transition-all duration-150 font-medium"
-                  }
-                >
-                  Products
-                </NavLink>
+                to="product"
+                className={({ isActive }) =>
+                  isActive
+                    ? "text-[#fa3253] transition-all duration-150 font-medium"
+                    : "hover:text-[#fa3253] transition-all duration-150 font-medium"
+                }
+              >
+                Products
+              </NavLink>
             </li>
             <li>
-              <a
-                href="#"
-                className="hover:text-[#fa3253] transition-all duration-150 font-medium"
+              <NavLink
+                to="blog"
+                className={({ isActive }) =>
+                  isActive
+                    ? "text-[#fa3253] transition-all duration-150 font-medium"
+                    : "hover:text-[#fa3253] transition-all duration-150 font-medium"
+                }
               >
                 Blog
-              </a>
+              </NavLink>
             </li>
             <li>
-              <a
-                href="#"
-                className="hover:text-[#fa3253] transition-all duration-150 font-medium"
+              <NavLink
+                to="about"
+                className={({ isActive }) =>
+                  isActive
+                    ? "text-[#fa3253] transition-all duration-150 font-medium"
+                    : "hover:text-[#fa3253] transition-all duration-150 font-medium"
+                }
               >
                 About us
-              </a>
+              </NavLink>
             </li>
             <li>
-              <a
-                href="#"
-                className="hover:text-[#fa3253] transition-all duration-150 font-medium"
+              <NavLink
+                to="contact"
+                className={({ isActive }) =>
+                  isActive
+                    ? "text-[#fa3253] transition-all duration-150 font-medium"
+                    : "hover:text-[#fa3253] transition-all duration-150 font-medium"
+                }
               >
                 Contact
-              </a>
+              </NavLink>
             </li>
           </ul>
         </div>

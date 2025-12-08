@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import NavProducts from "../../../Main/Produits/components/NavProducts";
-import { Link } from "react-router";
+import { useNavigate } from "react-router";
 import { Formik, Form, type FormikHelpers, ErrorMessage } from "formik";
 import * as Yup from "yup";
 import InputField from "../../../Main/Produits/components/FooterProductDescribe/InputField";
@@ -9,8 +9,11 @@ import { getAllCategory } from "../../../../store/category/actions";
 import useAppSelector from "../../../../hooks/useAppSelector";
 import useAppDispatch from "../../../../hooks/useAppDispatch";
 import type { ProductDto } from "../../../../types/product";
+import { createProduct } from "../../../../store/product/actions";
+import { toast } from "react-toastify";
 
 const ProductsList = () => {
+  const navigate = useNavigate();
   const [preview, setPreview] = useState<string | null>(null);
   const dispatch = useAppDispatch();
   const categories = useAppSelector((state) => state.category);
@@ -31,7 +34,6 @@ const ProductsList = () => {
     name: Yup.string().required("nom requis"),
     description: Yup.string(),
     price: Yup.number().required(),
-    quantity: Yup.number().required(),
     categoryId: Yup.number().required(),
     images: Yup.object().shape({
       image: Yup.mixed<File>()
@@ -63,18 +65,42 @@ const ProductsList = () => {
         }),
       gallery: Yup.array()
         .of(
-          Yup.mixed<File>().test("fileType",
-          "Type du fichier non supporté (jpg, jpeg, png, webp)",
-          (value) => {
-            if (!value) return false;
-            return ["image/jpeg", "image/jpg", "image/png", "image/webp"].includes(
-              value.type
-            );
-          })
+          Yup.mixed<File>().test(
+            "fileType",
+            "Type du fichier non supporté (jpg, jpeg, png, webp)",
+            (value) => {
+              if (!value) return false;
+              return [
+                "image/jpeg",
+                "image/jpg",
+                "image/png",
+                "image/webp",
+              ].includes(value.type);
+            }
+          )
         )
         .min(1, "Ajoute au moins une image à la galerie"),
     }),
   });
+  const handleSubmit = async (
+    values: ProductDto,
+    formikHelpers: FormikHelpers<ProductDto>
+  ) => {
+    formikHelpers.setSubmitting(true);
+    const response = await dispatch(createProduct(values));
+
+    if (response.meta.requestStatus === "fulfilled") {
+      toast.success("Categorie créée avec succès.");
+      formikHelpers.resetForm();
+      navigate("/admin/allproducts");
+    }
+
+    if (response.meta.requestStatus === "rejected") {
+      toast.error("Echec de creation de la categorie.");
+    }
+
+    formikHelpers.setSubmitting(false);
+  };
   return (
     <div className="w-full min-h-screen px-6 py-4 ">
       <div className="w-full flex flex-col mb-2">
@@ -88,11 +114,11 @@ const ProductsList = () => {
         <Formik
           initialValues={initialValues}
           validationSchema={validationSchema}
-          onSubmit={(values) => {
-            console.log("images envoyées : ", values);
-          }}
+          onSubmit={handleSubmit}
         >
           {(formik) => {
+            console.log(formik.errors);
+            console.log("formik.values: ", formik.values);
             return (
               <Form autoComplete="off" className="flex flex-col mb-2 w-full ">
                 <div className="flex flex-row justify-between items-center mb-6">
@@ -101,9 +127,10 @@ const ProductsList = () => {
                   </h1>
                   <button
                     type="submit"
-                    className=" bg-yellow-600 hover:bg-yellow-400 transition-all duration-300 ease-in-out border-[1px] border-gray-200 rounded-md cursor-pointer px-2.5 py-1.5  hover:shadow-md text-base flex flex-row justify-center items-center"
+                    disabled={formik.isSubmitting}
+                    className=" bg-[#fa3253] hover:bg-[#fa173d] transition-all duration-300 ease-in-out text-white rounded-md cursor-pointer px-2.5 py-1.5  hover:shadow-md text-base flex flex-row justify-center items-center"
                   >
-                    Save
+                    {formik.isSubmitting ? "creation..." : " créer"}
                   </button>
                 </div>
                 <div className="w-full flex flex-row gap-5 p-5 border-[1px] border-gray-100 shadow-md rounded-xs bg-white hover:shadow-md transition-all duration-300 ease-in-out">
@@ -133,12 +160,27 @@ const ProductsList = () => {
                       >
                         category
                       </label>
-                      <select name="categoryId" id="">
+                      <select
+                        name="categoryId"
+                        id=""
+                        onChange={(e) => {
+                          const value = e.currentTarget.value
+                          if(value){
+                            formik.setFieldValue(
+                              "categoryId",
+                              parseInt(value)
+                            );
+                          }
+                        }}
+                        className="border border-gray-600 text-gray-600 bg-gray-200 p-2 rounded w-full outline-0 hover:shadow "
+                      >
                         <option value="">
                           ~~ Sélectionner une catégorie ~~
                         </option>
                         {categories.items.map((item, index) => (
-                          <option key={index} value={item.id}>{item.name}</option>
+                          <option key={index} value={item.id}>
+                            {item.name}
+                          </option>
                         ))}
                       </select>
                     </div>
@@ -154,6 +196,7 @@ const ProductsList = () => {
                       <input
                         type="file"
                         id="image"
+                        name="image"
                         onChange={(e) => {
                           const file = e.currentTarget.files?.[0] || null;
                           formik.setFieldValue("images.image", file);
@@ -172,11 +215,15 @@ const ProductsList = () => {
                       {/* input gallery */}
                       <input
                         type="file"
-                        id="image"
+                        id="gallery"
+                        name="gallery"
                         multiple
                         onChange={(e) => {
-                          const file = e.currentTarget.files || null;
-                          formik.setFieldValue("image", file);
+                          const files = e.currentTarget.files || null;
+                          formik.setFieldValue(
+                            "images.gallery",
+                            Array.from(files || [])
+                          );
 
                           // Générer le preview
                           // if (file) {
@@ -224,14 +271,15 @@ const ProductsList = () => {
                       <div className="flex flex-col gap-2 w-1/3">
                         <label
                           htmlFor="price"
-                          className="font-medium text-gray-400"
+                          className="font-medium text-[#fa3253]"
                         >
                           Quantity
                         </label>
                         <InputField
                           name="quantity"
+                          disabled
                           id="quantity"
-                          className="border border-gray-600 text-gray-600 bg-gray-200 p-2 rounded outline-0 hover:shadow "
+                          className="border border-red-300 text-white bg-[#fa3253] p-2 rounded outline-0 hover:shadow "
                         />
                       </div>
                       {/* <div className="flex flex-col gap-2 w-1/3">
