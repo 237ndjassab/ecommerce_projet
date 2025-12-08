@@ -1,15 +1,15 @@
 import { createSlice } from "@reduxjs/toolkit";
 import {
-  deleteCategory,
-  getAllCategory,
-  createCategory,
-  updateCategory,
+  deleteProduct,
+  getAllProduct,
+  createProduct,
+  updateProduct,
 } from "./actions";
 import type { ApiError, statusType } from "../../types/base";
-import type { Category } from "../../types/category";
+import type { Product } from "../../types/product";
 
-export interface CategoryState {
-  items: Category[];
+export interface ProductState {
+  items: Product[];
   status: {
     getAll: statusType;
     delete: statusType;
@@ -24,7 +24,7 @@ export interface CategoryState {
   };
 }
 
-const initialState: CategoryState = {
+const initialState: ProductState = {
   items: [],
   status: {
     getAll: "idle",
@@ -40,23 +40,23 @@ const initialState: CategoryState = {
   },
 };
 
-export const categorySlice = createSlice({
-  name: "category",
+export const productSlice = createSlice({
+  name: "product",
   initialState,
   reducers: {},
   extraReducers: (builder) => {
     builder
-      .addCase(getAllCategory.pending, (state) => {
+      .addCase(getAllProduct.pending, (state) => {
         state.status.getAll = "pending";
         state.error.getAll = { message: null };
       })
-      .addCase(getAllCategory.fulfilled, (state, action) => {
+      .addCase(getAllProduct.fulfilled, (state, action) => {
         state.status.getAll = "succeeded";
         if (action.payload) {
           state.items = action.payload.data;
         }
       })
-      .addCase(getAllCategory.rejected, (state, action) => {
+      .addCase(getAllProduct.rejected, (state, action) => {
         state.status.getAll = "failed";
         if (action.payload) {
           // state.error.login = { message: action.payload };
@@ -64,11 +64,11 @@ export const categorySlice = createSlice({
       });
 
     builder
-      .addCase(deleteCategory.pending, (state) => {
+      .addCase(deleteProduct.pending, (state) => {
         state.status.delete = "pending";
         state.error.delete = { message: null };
       })
-      .addCase(deleteCategory.fulfilled, (state, action) => {
+      .addCase(deleteProduct.fulfilled, (state, action) => {
         state.status.delete = "succeeded";
         if (action.payload) {
           state.items = state.items.filter(
@@ -76,7 +76,7 @@ export const categorySlice = createSlice({
           );
         }
       })
-      .addCase(deleteCategory.rejected, (state, action) => {
+      .addCase(deleteProduct.rejected, (state, action) => {
         state.status.delete = "failed";
         if (action.payload) {
           // state.error.login = { message: action.payload };
@@ -84,17 +84,17 @@ export const categorySlice = createSlice({
       });
 
     builder
-      .addCase(createCategory.pending, (state) => {
+      .addCase(createProduct.pending, (state) => {
         state.status.create = "pending";
         state.error.create = { message: null };
       })
-      .addCase(createCategory.fulfilled, (state, action) => {
+      .addCase(createProduct.fulfilled, (state, action) => {
         state.status.create = "succeeded";
         if (action.payload) {
           state.items.unshift(action.payload.data);
         }
       })
-      .addCase(createCategory.rejected, (state, action) => {
+      .addCase(createProduct.rejected, (state, action) => {
         state.status.create = "failed";
         if (action.payload) {
           // state.error.login = { message: action.payload };
@@ -102,11 +102,11 @@ export const categorySlice = createSlice({
       });
 
     builder
-      .addCase(updateCategory.pending, (state) => {
+      .addCase(updateProduct.pending, (state) => {
         state.status.update = "pending";
         state.error.update = { message: null };
       })
-      .addCase(updateCategory.fulfilled, (state, action) => {
+      .addCase(updateProduct.fulfilled, (state, action) => {
         const id = action.payload?.data.id;
         state.status.update = "succeeded";
         if (action.payload) {
@@ -115,7 +115,7 @@ export const categorySlice = createSlice({
           );
         }
       })
-      .addCase(updateCategory.rejected, (state, action) => {
+      .addCase(updateProduct.rejected, (state, action) => {
         state.status.update = "failed";
         if (action.payload) {
           // state.error.login = { message: action.payload };
@@ -124,4 +124,4 @@ export const categorySlice = createSlice({
   },
 });
 
-export default categorySlice;
+export default productSlice;
