@@ -1,9 +1,19 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { Link } from "react-router";
 import { FaAngleRight } from "react-icons/fa";
-import { MdSearch } from "react-icons/md";
+import { MdDelete, MdSearch } from "react-icons/md";
+import useAppDispatch from "../../../../hooks/useAppDispatch";
+import useAppSelector from "../../../../hooks/useAppSelector";
+import { getAllProduct } from "../../../../store/product/actions";
+import { FiEdit3 } from "react-icons/fi";
 
 const AllProducts: React.FC = () => {
+  const dispatch = useAppDispatch();
+  const product = useAppSelector((state) => state.product);
+  useEffect(() => {
+    dispatch(getAllProduct());
+  }, [dispatch]);
+
   return (
     <div className="w-full min-h-screen px-6 py-4 ">
       <div className="w-full flex flex-col mb-2">
@@ -22,12 +32,13 @@ const AllProducts: React.FC = () => {
           <h1 className="font-semibold text-3xl text-[#1a1a2b]">
             All Products
           </h1>
-          <button
+          <Link
+            to="/admin/productList"
             type="submit"
-            className=" bg-yellow-600 hover:bg-yellow-400 transition-all duration-300 ease-in-out border-[1px] border-gray-200 rounded-md cursor-pointer px-2.5 py-1.5  hover:shadow-md text-base flex flex-row justify-center items-center"
+            className=" bg-[#fa3253] hover:bg-[#fa173d] transition-all duration-300 ease-in-out text-white rounded-md cursor-pointer px-2.5 py-1.5  hover:shadow-md text-base flex flex-row justify-center items-center"
           >
             New Products
-          </button>
+          </Link>
         </div>
         <div className="w-full flex flex-col gap-2 py-5 border-[1px] border-gray-100 shadow-md rounded-xs bg-white hover:shadow-md transition-all duration-300 ease-in-out">
           <div className="flex flex-row items-center gap-2 px-3 w-full">
@@ -46,27 +57,101 @@ const AllProducts: React.FC = () => {
           </div>
           <div className="w-full flex flex-col gap-2 px-3 shadow-md rounded-xs bg-white">
             <div className="w-full flex flex-row justify-between border-y-[1px] border-y-gray-300">
-              <div className="w-[5%] py-3 px-2">
+              <div className="w-[3%] py-3 px-2">
                 <input type="checkbox" className="border-gray-100" />
               </div>
-              <div className="w-[55%] py-3 px-2 hover:bg-gray-300 transition-all duration-300 ease-in-out">
-                <p className="text-gray-600 font-medium">Product</p>
-              </div>
               <div className="w-[15%] py-3 px-2 hover:bg-gray-300 transition-all duration-300 ease-in-out">
-                <p className="text-gray-600 font-medium">Category</p>
+                <p className="text-gray-600 font-medium">Image</p>
               </div>
-              <div className="w-[15%] py-3 px-2 hover:bg-gray-300 transition-all duration-300 ease-in-out">
-                <p className="text-gray-600 font-medium">Stocks</p>
+              <div className="w-[20%] py-3 px-2 hover:bg-gray-300 transition-all duration-300 ease-in-out">
+                <p className="text-gray-600 font-medium">Nom</p>
               </div>
               <div className="w-[10%] py-3 px-2 hover:bg-gray-300 transition-all duration-300 ease-in-out">
-                <p className="text-gray-600 font-medium">Price</p>
+                <p className="text-gray-600 font-medium">Prix</p>
+              </div>
+              <div className="w-[9%] py-3 px-2 hover:bg-gray-300 transition-all duration-300 ease-in-out">
+                <p className="text-gray-600 font-medium">Stock</p>
+              </div>
+              <div className="w-[15%] py-3 px-2 hover:bg-gray-300 transition-all duration-300 ease-in-out">
+                <p className="text-gray-600 font-medium">Catégorie</p>
+              </div>
+              <div className="w-[10%] py-3 px-2 hover:bg-gray-300 transition-all duration-300 ease-in-out">
+                <p className="text-gray-600 font-medium">Statut</p>
+              </div>
+              <div className="w-[10%] py-3 px-2 hover:bg-gray-300 transition-all duration-300 ease-in-out">
+                <p className="text-gray-600 font-medium">Créé le</p>
+              </div>
+              <div className="w-[10%] py-3 px-2 hover:bg-gray-300 transition-all duration-300 ease-in-out">
+                <p className="text-gray-600 font-medium">Actions</p>
               </div>
             </div>
-            <div className="w-full flex flex-row border-y-[1px] border-y-gray-300">
-              <div>
-                <input type="checkbox" className="border-gray-100" />
+            {product.items.map((produit, index) => (
+              <div
+                key={index}
+                className="w-full flex flex-col gap-2 px-3 shadow-md rounded-xs bg-white"
+              >
+                <div className="w-full flex flex-row justify-between border-y-[1px] border-y-gray-300 items-center">
+                  <div className="w-[3%] py-3 px-2">
+                    <input type="checkbox" className="border-gray-100" />
+                  </div>
+                  <div className="w-[15%] py-3 px-2 hover:bg-gray-300 transition-all duration-300 ease-in-out">
+                    <img
+                      src={produit.images.image}
+                      className="w-[50px]"
+                      alt={produit.images.image}
+                    />
+                  </div>
+                  <div className="w-[20%] py-3 px-2 hover:bg-gray-300 transition-all duration-300 ease-in-out">
+                    <p className="text-gray-600 font-medium">{produit.name}</p>
+                  </div>
+                  <div className="w-[10%] py-3 px-2 hover:bg-gray-300 transition-all duration-300 ease-in-out">
+                    <p className="text-gray-600 font-medium">{produit.price}</p>
+                  </div>
+                  <div className="w-[9%] py-3 px-2 hover:bg-gray-300 transition-all duration-300 ease-in-out">
+                    <p className="text-gray-600 font-medium">
+                      {produit.quantity}
+                    </p>
+                  </div>
+                  <div className="w-[15%] py-3 px-2 hover:bg-gray-300 transition-all duration-300 ease-in-out">
+                    <p className="text-gray-600 font-medium">
+                      {produit.category.name}
+                    </p>
+                  </div>
+                  <div className="w-[10%] py-3 px-2 hover:bg-gray-300 transition-all duration-300 ease-in-out">
+                    {produit.quantity == 0 ? (
+                      <p className="text-red-600 font-medium text-[12px] bg-red-300 rounded-md p-0.5 w-fit">
+                        Out of Stock{" "}
+                      </p>
+                    ) : (
+                      <p className="text-green-600 font-medium text-[12px] bg-green-300 rounded-md p-0.5 w-fit">
+                        Available
+                      </p>
+                    )}
+                  </div>
+                  <div className="w-[10%] py-3 px-2 hover:bg-gray-300 transition-all duration-300 ease-in-out">
+                    <p className="text-gray-600 font-medium text-[12px]">{produit.createdAt as string}</p>
+                  </div>
+                  {/* <div className="w-[10%] py-3 px-2 transition-all duration-300 ease-in-out  flex flex-row gap-3">
+                              <button onClick={()=>handleDelete(category.id)} className="text-red-500 mr-4 hover:text-red-600 text-2xl"><MdDelete /></button>
+                              <button onClick={()=>handleUpdate(category.id)} className="text-green-500 hover:text-green-600 text-2xl"><FiEdit3 /></button>
+                            </div> */}
+                  <div className="w-[10%] py-3 px-2 transition-all duration-300 ease-in-out  flex flex-row justify-center items-center gap-1">
+                    <button
+                      onClick={() => null}
+                      className="text-red-500 mr-4 hover:text-red-600 text-2xl"
+                    >
+                      <MdDelete />
+                    </button>
+                    <button
+                      onClick={() => null}
+                      className="text-green-500 hover:text-green-600 text-2xl"
+                    >
+                      <FiEdit3 />
+                    </button>
+                  </div>
+                </div>
               </div>
-            </div>
+            ))}
           </div>
         </div>
       </div>
