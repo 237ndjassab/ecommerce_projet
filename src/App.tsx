@@ -21,7 +21,7 @@ import { ToastContainer } from "react-toastify";
 import AddCategory from "./pages/Admin/catalog/categories/addCategory";
 import AllCategories from "./pages/Admin/catalog/categories/AllCategories";
 import AllProducts from "./pages/Admin/catalog/produits/AllProducts";
-import ProductsList from "./pages/Admin/catalog/produits/ProductsList";
+import ProductsList from "./pages/Admin/catalog/produits/addProducts";
 import UpdateCategory from "./pages/Admin/catalog/categories/updateCategory";
 import ProtectRoute from "./components/common/ProtectRoute";
 
