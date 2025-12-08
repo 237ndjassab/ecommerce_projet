@@ -6,6 +6,7 @@ import type {
   ProductDtoUpdate,
 } from "../../types/product";
 import type { ApiResponse } from "../../types/base";
+import fetchWithAuth from "../../services/fetchWithAuth.service";
 
 export const getAllProduct = createAsyncThunk<ApiResponse<Product[]>>(
   "product/getAll",
@@ -60,9 +61,8 @@ export const createProduct = createAsyncThunk<
       formdata.append("gallery", file); // IMPORTANT : même clé répétée
     });
   }
-
   try {
-    const response = await fetch(`${import.meta.env.VITE_API_URL}/products`, {
+    const response = await fetchWithAuth(`${import.meta.env.VITE_API_URL}/products`, {
       method: "POST",
       headers: {
         accept: "application/json",
