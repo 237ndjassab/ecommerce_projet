@@ -1,4 +1,4 @@
-import type { BaseEntity } from "./base";
+import type { BaseEntity, Pagination } from "./base";
 
 export interface Category extends BaseEntity {
   name: string;
@@ -7,12 +7,23 @@ export interface Category extends BaseEntity {
 }
 export interface CategoryDto {
   name: string;
-  image: string | File ;
+  image: string | File;
   description: string;
 }
 export interface CategoryDtoUpdate {
   id: number;
   name: string;
-  image: string | File ;
+  image: string | File;
   description: string;
+}
+
+export interface CategoriesFilter {
+  search?: string;
+  limit?: number;
+  page?: number;
+}
+
+export interface PaginationCategories {
+  list: Category[];
+  pagination: Pagination;
 }

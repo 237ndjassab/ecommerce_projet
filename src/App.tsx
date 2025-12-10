@@ -24,6 +24,8 @@ import AllProducts from "./pages/Admin/catalog/produits/AllProducts";
 import ProductsList from "./pages/Admin/catalog/produits/addProducts";
 import UpdateCategory from "./pages/Admin/catalog/categories/updateCategory";
 import ProtectRoute from "./components/common/ProtectRoute";
+import New_stocks from "./pages/Admin/catalog/stocks/new_stocks";
+import CheckRole from "./components/common/CheckRole";
 
 const App: React.FC = () => {
   
@@ -42,7 +44,7 @@ const App: React.FC = () => {
               <Route path="contact" index element={<Contact />} />
             </Route>
 
-            <Route path="/admin" element={<ProtectRoute><AdminLayout /></ProtectRoute> }>
+            <Route path="/admin" element={<ProtectRoute><CheckRole requireRole="ADMIN" isPage={true} ><AdminLayout /></CheckRole> </ProtectRoute> }>
               <Route path="/admin" element={<Navigate to={"/admin/dashboard"} />} />
               <Route path="/admin/dashboard" index element={<Dashboard />} />
               <Route path="/admin/addcategory" index element={<AddCategory />} />
@@ -50,6 +52,7 @@ const App: React.FC = () => {
               <Route path="/admin/allcategory" index element={<AllCategories />} />
               <Route path="/admin/allproducts" index element={<AllProducts />} />
               <Route path="/admin/productList" index element={<ProductsList />} />
+              <Route path="/admin/new_stocks" index element={<New_stocks />} />
             </Route>
           
             <Route path="/register" element={<Register />} />

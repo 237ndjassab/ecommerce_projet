@@ -112,6 +112,18 @@ const SideBar = ({ isOpen }: Props) => {
                   >
                     <li className="ml-7 cursor-pointer hover:text-white transition-all duration-300 ease-in-out">
                       <NavLink
+                        to="/admin/new_stocks"
+                        className={({ isActive }) =>
+                          isActive
+                            ? "text-[#fa3253] transition-all duration-150 font-medium"
+                            : "hover:text-[#fa3253] transition-all duration-150 font-medium"
+                        }
+                      >
+                        New Stocks
+                      </NavLink>
+                    </li>
+                    <li className="ml-7 cursor-pointer hover:text-white transition-all duration-300 ease-in-out">
+                      <NavLink
                         to="/admin/productList"
                         className={({ isActive }) =>
                           isActive

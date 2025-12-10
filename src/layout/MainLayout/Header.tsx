@@ -9,6 +9,7 @@ import collection2 from "../../assets/images/collection-2.jpg";
 import collection3 from "../../assets/images/collection-3.jpg";
 import { Link, NavLink } from "react-router";
 import useAppSelector from "../../hooks/useAppSelector";
+import CheckRole from "../../components/common/CheckRole";
 
 const Header = () => {
   const auth = useAppSelector((state) => state.auth);
@@ -282,6 +283,20 @@ const Header = () => {
                 Contact
               </NavLink>
             </li>
+            <CheckRole requireRole="ADMIN" isPage={false}>
+              <li>
+              <NavLink
+                to="/admin"
+                className={({ isActive }) =>
+                  isActive
+                    ? "text-[#fa3253] transition-all duration-150 font-medium"
+                    : "hover:text-[#fa3253] transition-all duration-150 font-medium"
+                }
+              >
+                Admin
+              </NavLink>
+            </li>
+            </CheckRole>
           </ul>
         </div>
         <div className="flex gap-2 items-center text-white hover:text-[#fa3253] transition-all duration-150 hover:cursor-pointer font-medium">
