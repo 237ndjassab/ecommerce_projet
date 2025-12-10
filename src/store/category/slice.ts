@@ -4,20 +4,24 @@ import {
   getAllCategory,
   createCategory,
   updateCategory,
+  getPaginateCategorieAction,
 } from "./actions";
-import type { ApiError, statusType } from "../../types/base";
+import type { ApiError, Pagination, statusType } from "../../types/base";
 import type { Category } from "../../types/category";
 
 export interface CategoryState {
-  items: Category[];
+  items: Category[] ;
+  pagination: Pagination
   status: {
     getAll: statusType;
+    getPaginate: statusType;
     delete: statusType;
     create: statusType;
     update: statusType;
   };
   error: {
     getAll: ApiError;
+    getPaginate: ApiError;
     delete: ApiError;
     create: ApiError;
     update: ApiError;
@@ -26,14 +30,24 @@ export interface CategoryState {
 
 const initialState: CategoryState = {
   items: [],
+  pagination: {
+    totalItems: 0,
+    totalPage: 1,
+    prevPage: 0,
+    currentpage: 1,
+    nextpage: 0,
+    limit: 10,
+  },
   status: {
     getAll: "idle",
+    getPaginate: "idle",
     delete: "idle",
     create: "idle",
     update: "idle",
   },
   error: {
     getAll: { message: null },
+    getPaginate: { message: null },
     delete: { message: null },
     create: { message: null },
     update: { message: null },
@@ -45,6 +59,25 @@ export const categorySlice = createSlice({
   initialState,
   reducers: {},
   extraReducers: (builder) => {
+    builder
+      .addCase(getPaginateCategorieAction.pending, (state) => {
+        state.status.getPaginate = "pending";
+        state.error.getPaginate = { message: null };
+      })
+      .addCase(getPaginateCategorieAction.fulfilled, (state, action) => {
+        state.status.getPaginate = "succeeded";
+        if (action.payload) {
+          state.items = action.payload.data.list;
+          state.pagination = action.payload.data.pagination;
+        }
+      })
+      .addCase(getPaginateCategorieAction.rejected, (state, action) => {
+        state.status.getPaginate = "failed";
+        if (action.payload) {
+          // state.error.login = { message: action.payload };
+        }
+      });
+
     builder
       .addCase(getAllCategory.pending, (state) => {
         state.status.getAll = "pending";
