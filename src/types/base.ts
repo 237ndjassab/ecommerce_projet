@@ -35,3 +35,12 @@ export interface ApiThunk {
   fulfilledMeta?: unknown;
   // rejectedMeta?: unknown;
 }
+
+export interface Pagination {
+  totalItems: number
+  totalPage: number
+  prevPage: number
+  currentpage: number
+  nextpage: number
+  limit: number
+}
