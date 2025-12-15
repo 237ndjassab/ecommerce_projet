@@ -50,12 +50,11 @@ const Home = () => {
               </span>
             </div>
             <div className=" rounded-b-2xl">
-              <ul className="rounded-b-2xl pb-2 px-2 text-sm">
-        
+              <ul className="rounded-b-2xl pb-2 text-sm">
                 {categories.items.map((item, index) => (
                   <li
                     key={index.toString()}
-                    className="px-4 py-3 border-b border-[#000]/10"
+                    className="px-6 py-3 border-b border-[#000]/10 cursor-pointer hover:bg-[#fa3253]/10 rounded-md"
                   >
                     {item.name}
                   </li>
@@ -117,6 +116,24 @@ const Home = () => {
               </button>
             </div>
           </div>
+          {products.items.map((item, index) => (
+            <div
+              key={index.toString()}
+              className="bg-white min-w-[200px] max-h-[400px] border border-[#000]/10 rounded-xl shadow-md overflow-hidden hover:shadow-lg transition-shadow duration-300"
+            >
+              <img className="w-full h-[200px] " src={item.images.image} alt="Product Image" />
+              <div className="p-4 h-[full] flex flex-col">
+                <span className="text-sm text-gray-500 uppercase tracking-wide">
+                  {item.category.name}
+                </span>
+                <h2 className="mt-2 text-lg font-semibold">{item.name}</h2>
+                <p className="mt-1 text-lg font-bold">${item.price}</p>
+                <button className="mt-4 w-full bg-[#fa3253] text-white py-2 px-4 rounded-lg hover:bg-[#fa183e] transition-colors duration-300">
+                  Order
+                </button>
+              </div>
+            </div>
+          ))}
         </div>
       </section>
     </>
