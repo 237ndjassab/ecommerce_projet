@@ -3,7 +3,7 @@ import Anis from '../../../../assets/anis-m-WnVrO-DvxcE-unsplash.jpeg';
 import Even from '../../../../assets/evan-mcdougall-qnh1odlqOmk-unsplash.jpeg';
 import Jordan from '../../../../assets/jordan-nix-CkCUvwMXAac-unsplash.jpeg';
 import Nature from '../../../../assets/nature-zen-3Dn1BZZv3m8-unsplash.jpeg';
-import Magnifier from 'react-magnifier';
+import ReactImageMagnify from 'react-image-magnify';
 import { FaEye } from 'react-icons/fa6';
 
 interface Color {
@@ -66,19 +66,30 @@ const WomensBeauty: FC = () => {
   const [selectedSize, setSelectedSize] = useState<string>('S');
   const [quantity, setQuantity] = useState<number>(1);
   
-  // Composant d'affichage de l'image principale AVEC ZOOME
+  // Composant d'affichage de l'image principale AVEC ZOOM (react-image-magnify)
   const MainImageDisplay: FC<MainImageDisplayProps> = ({ src, alt }) => (
-    <div className="bg-gray-100 rounded-lg overflow-hidden flex items-center justify-center p-4">
-      {/* Utilisation del composant Magnifier */}
-      <Magnifier 
-        src={src}
-        width="100%"
-        height="100%"
-        zoomFactor={0.8}
-        mgShape="square"
-        mgWidth={300}
-        mgHeight={300}
-      />
+    <div className="bg-gray-100 rounded-lg overflow-hidden flex items-center justify-center p-4 w-full">
+      <div className="w-full">
+        <ReactImageMagnify
+          {...{
+            smallImage: {
+              alt,
+              isFluidWidth: true,
+              src,
+            },
+            largeImage: {
+              src,
+              width: 1200,
+              height: 1500,
+            },
+            enlargedImageContainerDimensions: {
+              width: '150%',
+              height: '150%',
+            },
+            isHintEnabled: true,
+          }}
+        />
+      </div>
     </div>
   );
   
