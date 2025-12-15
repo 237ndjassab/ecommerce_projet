@@ -10,7 +10,6 @@ import { FiShare2 } from "react-icons/fi";
 import { Tooltip } from "react-tooltip";
 
 const HeaderProduct = () => {
-    const defaultVal = 1;
     const [qty, setQty] = React.useState<number>(1);
   return (
     <div className="flex flex-row w-full gap-8 py-14">
@@ -72,8 +71,7 @@ const HeaderProduct = () => {
                 <div>
                   <input
                     type="text"
-                    defaultValue={defaultVal}
-                    value={qty ? qty : defaultVal}
+                    value={qty}
                     readOnly
                     className="w-16 text-center outline-none"
                   />

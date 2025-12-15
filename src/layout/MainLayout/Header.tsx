@@ -34,7 +34,7 @@ const Header = () => {
       </div>
       <div className="flex justify-between items-center px-8 py-6">
         <div className="mr-20">
-          <img className="logo hover:cursor-pointer" src={logo} />
+          <img title="img" className="logo hover:cursor-pointer" src={logo} />
         </div>
         <div className="flex justify-between items-center bg-white w-3/6 rounded-sm">
           <input
@@ -76,9 +76,11 @@ const Header = () => {
           </div>
           <div className="flex items-center gap-3 relative">
             <MdOutlineShoppingCart className="text-lg" />
+            <Link to='/shopcart'>
             <p className="hover:text-[#fa3253] hover:cursor-pointer transition-all duration-150">
               Cart
             </p>
+            </Link>
             <span className="bg-[#fa3253] rounded-full flex justify-center items-center text-xs w-4 h-4 absolute -top-2 -left-2">
               0
             </span>
@@ -89,16 +91,20 @@ const Header = () => {
         <div className="text-white mr-60">
           <ul className="list-none flex gap-10">
             <li>
+              <Link to='/home'>
               <a
                 href="#"
                 className="hover:text-[#fa3253] transition-all duration-150 font-medium"
               >
                 Home
               </a>
+              </Link>
             </li>
             <div className="">
               <li className="flex items-center gap-2 hover:text-[#fa3253] transition-all duration-150 font-medium">
+                <Link to='/shop'>
                 <a href="#">Shop</a>
+                </Link>
                 <FaChevronDown className="text-xs mt-1" />
               </li>
               <div className="hidden gap-8 bg-white shadow-md p-4 text-black absolute -bottom-90">
@@ -222,36 +228,44 @@ const Header = () => {
               </div>
             </div>
             <li>
+              <Link to='/produit'>
               <a
                 href="#"
                 className="hover:text-[#fa3253] transition-all duration-150 font-medium"
               >
                 Products
               </a>
+              </Link>
             </li>
             <li>
+              <Link to='/blog'>
               <a
                 href="#"
                 className="hover:text-[#fa3253] transition-all duration-150 font-medium"
               >
                 Blog
               </a>
+              </Link>
             </li>
             <li>
+              <Link to='/about'>
               <a
                 href="#"
                 className="hover:text-[#fa3253] transition-all duration-150 font-medium"
               >
                 About us
               </a>
+              </Link>
             </li>
             <li>
+              <Link to='/contact'>
               <a
                 href="#"
                 className="hover:text-[#fa3253] transition-all duration-150 font-medium"
               >
                 Contact
               </a>
+              </Link>
             </li>
           </ul>
         </div>

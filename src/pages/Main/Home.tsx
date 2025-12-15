@@ -5,6 +5,7 @@ import shoe2 from "../../assets/images/shoe2.jpg";
 import shoe3 from "../../assets/images/shoe3.jpg";
 import shoe4 from "../../assets/images/shoe4.jpg";
 import { useEffect } from "react";
+import { useNavigate } from "react-router";
 import useAppDispatch from "../../hooks/useAppDispatch";
 import { getAllCategory } from "../../store/category/actions";
 import useAppSelector from "../../hooks/useAppSelector";
@@ -12,6 +13,7 @@ import { getAllProduct } from "../../store/product/actions";
 
 const Home = () => {
   const dispatch = useAppDispatch();
+  const navigate = useNavigate();
   const products = useAppSelector((state) => state.product);
   const categories = useAppSelector((state) => state.category);
 
@@ -73,7 +75,10 @@ const Home = () => {
               </span>
               <h2 className="mt-2 text-lg font-semibold">Basket</h2>
               <p className="mt-1 text-lg font-bold">$49.99</p>
-              <button className="mt-4 w-full bg-[#fa3253] text-white py-2 px-4 rounded-lg hover:bg-[#fa183e] transition-colors duration-300">
+              <button
+                onClick={() => navigate("/produit")}
+                className="mt-4 w-full bg-[#fa3253] text-white py-2 px-4 rounded-lg hover:bg-[#fa183e] transition-colors duration-300"
+              >
                 Order
               </button>
             </div>
@@ -86,7 +91,10 @@ const Home = () => {
               </span>
               <h2 className="mt-2 text-lg font-semibold">Basket</h2>
               <p className="mt-1 text-lg font-bold">$49.99</p>
-              <button className="mt-4 w-full bg-[#fa3253] text-white py-2 px-4 rounded-lg hover:bg-[#fa183e] transition-colors duration-300">
+              <button
+                onClick={() => navigate("/produit")}
+                className="mt-4 w-full bg-[#fa3253] text-white py-2 px-4 rounded-lg hover:bg-[#fa183e] transition-colors duration-300"
+              >
                 Order
               </button>
             </div>
@@ -99,7 +107,10 @@ const Home = () => {
               </span>
               <h2 className="mt-2 text-lg font-semibold">Basket</h2>
               <p className="mt-1 text-lg font-bold">$49.99</p>
-              <button className="mt-4 w-full bg-[#fa3253] text-white py-2 px-4 rounded-lg hover:bg-[#fa183e] transition-colors duration-300">
+              <button
+                onClick={() => navigate("/produit")}
+                className="mt-4 w-full bg-[#fa3253] text-white py-2 px-4 rounded-lg hover:bg-[#fa183e] transition-colors duration-300"
+              >
                 Order
               </button>
             </div>
@@ -112,7 +123,10 @@ const Home = () => {
               </span>
               <h2 className="mt-2 text-lg font-semibold">Basket</h2>
               <p className="mt-1 text-lg font-bold">$49.99</p>
-              <button className="mt-4 w-full bg-[#fa3253] text-white py-2 px-4 rounded-lg hover:bg-[#fa183e] transition-colors duration-300">
+              <button
+                onClick={() => navigate("/produit")}
+                className="mt-4 w-full bg-[#fa3253] text-white py-2 px-4 rounded-lg hover:bg-[#fa183e] transition-colors duration-300"
+              >
                 Order
               </button>
             </div>

@@ -29,7 +29,7 @@ export const registerAction = createAsyncThunk<ApiResponse<User>, RegisterDto>(
       const response = await fetch(
         `${import.meta.env.VITE_API_URL}/auth/register`,
         {
-          method: "Post",
+          method: "POST",
           headers: {
             accept: "application/json",
             "Content-Type": "application/json",
@@ -127,7 +127,7 @@ export const forgotPasswordAction = createAsyncThunk<
     const response = await fetch(
       `${import.meta.env.VITE_API_URL}/auth/forgot-password`,
       {
-        method: "Post",
+        method: "POST",
         headers: {
           accept: "application/json",
           "Content-Type": "application/json",
@@ -173,7 +173,7 @@ export const verifyOtpAction = createAsyncThunk<
     const response = await fetch(
       `${import.meta.env.VITE_API_URL}/auth/verify-otp`,
       {
-        method: "Post",
+        method: "POST",
         headers: {
           accept: "application/json",
           "Content-Type": "application/json",
@@ -219,7 +219,7 @@ export const resetPasswordAction = createAsyncThunk<
     const response = await fetch(
       `${import.meta.env.VITE_API_URL}/auth/reset-password`,
       {
-        method: "Post",
+        method: "POST",
         headers: {
           accept: "application/json",
           "Content-Type": "application/json",
@@ -261,7 +261,7 @@ export const refreshTokenAction = createAsyncThunk<
     const response = await fetch(
       `${import.meta.env.VITE_API_URL}/auth/refresh`,
       {
-        method: "Post",
+        method: "POST",
         headers: {
           accept: "application/json",
           "Content-Type": "application/json",
@@ -310,7 +310,7 @@ export const logoutAction = createAsyncThunk<
       const response = await fetch(
         `${import.meta.env.VITE_API_URL}/auth/logout`,
         {
-          method: "Post",
+          method: "POST",
           headers: {
             accept: "application/json",
             "Content-Type": "application/json",

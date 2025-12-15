@@ -41,7 +41,7 @@ const Register = () => {
     const response = await dispatch(registerAction(values));
 
     if (response.meta.requestStatus === "fulfilled") {
-      toast.success("Utilisateur connecté avec succès.");
+      toast.success("Utilisateur créé avec succès.");
       navigate("/login");
     }
 
