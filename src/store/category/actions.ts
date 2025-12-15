@@ -1,12 +1,49 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
 
 import type {
+  CategoriesFilter,
   Category,
   CategoryDto,
   CategoryDtoUpdate,
+  PaginationCategories,
 } from "../../types/category";
 import type { ApiResponse } from "../../types/base";
 import fetchWithAuth from "../../services/fetchWithAuth.service";
+
+export const getPaginateCategorieAction = createAsyncThunk<ApiResponse<PaginationCategories>, CategoriesFilter>(
+  "category/getPaginate",
+  async ({search, limit, page}, apiThunk) => {
+    try {
+      const params = new URLSearchParams(
+         { search: search ? search : "", limit: limit ? limit.toString() : "", page: page ? page.toString() : "" }
+      )
+      const response = await fetch(
+        `${import.meta.env.VITE_API_URL}/categories/paginate?${params.toString()}`,
+        {
+          method: "GET",
+          headers: {
+            accept: "application/json",
+          },
+        }
+      );
+
+      if (!response.ok) {
+        const error = await response.json();
+        console.log("Failed to download Categories: ", error);
+        return apiThunk.rejectWithValue("Failed to download Categories.");
+      }
+      const result = await response.json();
+
+      return result;
+    } catch (error) {
+      console.log("Error on download Categories: ", error);
+      return apiThunk.rejectWithValue(
+        (error as { message: string }).message ||
+          "Error on download Categories."
+      );
+    }
+  }
+);
 
 export const getAllCategory = createAsyncThunk<ApiResponse<Category[]>>(
   "category/getAll",
@@ -39,6 +76,8 @@ export const getAllCategory = createAsyncThunk<ApiResponse<Category[]>>(
     }
   }
 );
+
+
 
 export const createCategory = createAsyncThunk<
   ApiResponse<Category>,

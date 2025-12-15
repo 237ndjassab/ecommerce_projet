@@ -1,7 +1,7 @@
 import React from "react";
 import { TfiDashboard } from "react-icons/tfi";
 import "../index.css";
-import { Link, useNavigate } from "react-router";
+import { Link, NavLink, useNavigate } from "react-router";
 import { FaDatabase, FaShoppingCart } from "react-icons/fa";
 import {
   MdKeyboardArrowDown,
@@ -67,7 +67,16 @@ const SideBar = ({ isOpen }: Props) => {
                       <TfiDashboard className="text-xl" />
                     </span>{" "}
                     <span className="text-[15px] cursor-pointer hover:text-white transition-all duration-300 ease-in-out">
-                      <Link to={"/admin/dashboard"}>Dashboard</Link>
+                      <NavLink
+                        to="/admin/dashboard"
+                        className={({ isActive }) =>
+                          isActive
+                            ? "text-[#fa3253] transition-all duration-150 font-medium"
+                            : "hover:text-[#fa3253] transition-all duration-150 font-medium"
+                        }
+                      >
+                        Dashboard
+                      </NavLink>
                     </span>
                   </div>
                 </li>
@@ -102,16 +111,64 @@ const SideBar = ({ isOpen }: Props) => {
                     className="flex flex-col gap-4 overflow-hidden"
                   >
                     <li className="ml-7 cursor-pointer hover:text-white transition-all duration-300 ease-in-out">
-                      <Link to={"/admin/productList"}>Product List</Link>
+                      <NavLink
+                        to="/admin/new_stocks"
+                        className={({ isActive }) =>
+                          isActive
+                            ? "text-[#fa3253] transition-all duration-150 font-medium"
+                            : "hover:text-[#fa3253] transition-all duration-150 font-medium"
+                        }
+                      >
+                        New Stocks
+                      </NavLink>
                     </li>
                     <li className="ml-7 cursor-pointer hover:text-white transition-all duration-300 ease-in-out">
-                      <Link to={"/admin/allproducts"}>Product</Link>
+                      <NavLink
+                        to="/admin/productList"
+                        className={({ isActive }) =>
+                          isActive
+                            ? "text-[#fa3253] transition-all duration-150 font-medium"
+                            : "hover:text-[#fa3253] transition-all duration-150 font-medium"
+                        }
+                      >
+                        Add Product
+                      </NavLink>
                     </li>
                     <li className="ml-7 cursor-pointer hover:text-white transition-all duration-300 ease-in-out">
-                      <Link to={"/admin/allcategory"}>Category List</Link>
+                      <NavLink
+                        to="/admin/allproducts"
+                        className={({ isActive }) =>
+                          isActive
+                            ? "text-[#fa3253] transition-all duration-150 font-medium"
+                            : "hover:text-[#fa3253] transition-all duration-150 font-medium"
+                        }
+                      >
+                        Product List
+                      </NavLink>
                     </li>
                     <li className="ml-7 cursor-pointer hover:text-white transition-all duration-300 ease-in-out">
-                      <Link to={"/admin/addcategory"}>Add Category</Link>
+                      <NavLink
+                        to="/admin/allcategory"
+                        className={({ isActive }) =>
+                          isActive
+                            ? "text-[#fa3253] transition-all duration-150 font-medium"
+                            : "hover:text-[#fa3253] transition-all duration-150 font-medium"
+                        }
+                      >
+                        Category List
+                      </NavLink>
+                    </li>
+                    <li className="ml-7 cursor-pointer hover:text-white transition-all duration-300 ease-in-out">
+                      <NavLink
+                        to="/admin/addcategory"
+                        className={({ isActive }) =>
+                          isActive
+                            ? "text-[#fa3253] transition-all duration-150 font-medium"
+                            : "hover:text-[#fa3253] transition-all duration-150 font-medium"
+                        }
+                      >
+                        Add Category
+                      </NavLink>
                     </li>
                   </motion.ul>
                 )}
@@ -324,7 +381,6 @@ const SideBar = ({ isOpen }: Props) => {
                     <span className="text-[15px] cursor-pointer hover:text-white transition-all duration-300 ease-in-out">
                       <Link to={"/tableaudeboard"}>Setting</Link>
                     </span>
- 
                   </div>
                 </li>
 
@@ -334,7 +390,6 @@ const SideBar = ({ isOpen }: Props) => {
                     <span>
                       <IoSettings className="text-xl" />
                     </span>{" "}
-                 
                     <button
                       type="button"
                       onClick={() => handleLogout()}

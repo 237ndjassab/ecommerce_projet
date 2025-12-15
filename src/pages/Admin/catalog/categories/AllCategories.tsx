@@ -1,25 +1,32 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router";
 import { FaAngleRight } from "react-icons/fa";
 import { MdSearch } from "react-icons/md";
 import useAppDispatch from "../../../../hooks/useAppDispatch";
-import { deleteCategory, getAllCategory } from "../../../../store/category/actions";
+import {
+  deleteCategory,
+  getPaginateCategorieAction,
+} from "../../../../store/category/actions";
 import useAppSelector from "../../../../hooks/useAppSelector";
 import { MdDelete } from "react-icons/md";
 import { FiEdit3 } from "react-icons/fi";
 import { toast } from "react-toastify";
+import DebouncedInput from "../../../../components/common/DebouncedInput";
+import Pagination from "../../../../components/common/Pagination";
 
 const AllCategories = () => {
   const navigate = useNavigate();
   const dispatch = useAppDispatch();
   const categories = useAppSelector((state) => state.category);
+  const [search, setSeach] = useState("");
+  const [limit, setLimit] = useState(10);
+  const [page, setPage] = useState(1);
   useEffect(() => {
-    dispatch(getAllCategory());
-  }, [dispatch]);
+    dispatch(getPaginateCategorieAction({ search, limit, page }));
+  }, [dispatch, search, limit, page]);
 
-  const handleDelete = async (id:number)=>{
+  const handleDelete = async (id: number) => {
     const response = await dispatch(deleteCategory(id));
-
 
     if (response.meta.requestStatus === "fulfilled") {
       toast.success("Categorie supprimée avec succès.");
@@ -30,10 +37,11 @@ const AllCategories = () => {
     }
   };
 
-  const handleUpdate = async (id:number)=>{
-    navigate("/admin/updatecategory", {state: id});
-  }
+  const handleUpdate = async (id: number) => {
+    navigate("/admin/updatecategory", { state: id });
+  };
 
+  console.log("search", search);
 
   return (
     <div className="w-full min-h-screen px-6 py-4 ">
@@ -54,7 +62,7 @@ const AllCategories = () => {
             All Category
           </h1>
           <Link
-            to='/admin/addcategory'
+            to="/admin/addcategory"
             type="submit"
             className=" bg-[#fa3253] hover:bg-[#fa173d] transition-all duration-300 ease-in-out text-white rounded-md cursor-pointer px-2.5 py-1.5  hover:shadow-md text-base flex flex-row justify-center items-center"
           >
@@ -67,27 +75,56 @@ const AllCategories = () => {
               <div>
                 <MdSearch className="text-xl text-gray-400" />
               </div>
-              <form action="#" className="w-[100%]">
-                <input
+              {/* <input
                   type="text"
                   placeholder="Recherche ..."
                   className="placeholder:text-gray-400 outline-0 px-2.5 w-full"
-                />
-              </form>
+                  onChange={(e) => {
+                    setSeach(e.target.value)
+                    dispatch(getPaginateCategorieAction({search}))
+                  }}
+                /> */}
+              <DebouncedInput
+                value={search}
+                onChange={(value) => setSeach(value)}
+              />
+              <div>
+                <select
+                  onChange={(e) => {
+                    setLimit(Number(e.target.value));
+                  }}
+                  name="filter"
+                  id="filter"
+                >
+                  <option value="1" selected={1 == limit}>
+                    1
+                  </option>
+                  <option value="2" selected={2 == limit}>
+                    2
+                  </option>
+                  <option value="5" selected={5 == limit}>
+                    5
+                  </option>
+                  <option value="10" selected={10 == limit}>
+                    10
+                  </option>
+                </select>
+              </div>
+              
             </div>
           </div>
           <div className="w-full flex flex-col gap-2 px-3 shadow-md rounded-xs bg-white">
-            <div className="w-full flex flex-row justify-between border-y-[1px] border-y-gray-300">
-              <div className="w-[5%] py-3 px-2">
+            <div className="w-full flex flex-row justify-between gap-0 border-y-[1px] border-y-gray-300">
+              <div className="w-[10%] py-3 px-2">
                 <input type="checkbox" className="border-gray-100" />
               </div>
-              <div className="w-[5%] py-3 px-2 hover:bg-gray-300 transition-all duration-300 ease-in-out">
+              <div className="w-[10%] py-3 px-2 hover:bg-gray-300 transition-all duration-300 ease-in-out">
                 <p className="text-gray-600 font-medium">Numero</p>
               </div>
-              <div className="w-[20%] py-3 px-2 hover:bg-gray-300 transition-all duration-300 ease-in-out">
+              <div className="w-[25%] py-3 px-2 hover:bg-gray-300 transition-all duration-300 ease-in-out">
                 <p className="text-gray-600 font-medium">Nom</p>
               </div>
-              <div className="w-[20%] py-3 px-2 hover:bg-gray-300 transition-all duration-300 ease-in-out">
+              <div className="w-[25%] py-3 px-2 hover:bg-gray-300 transition-all duration-300 ease-in-out">
                 <p className="text-gray-600 font-medium">Description</p>
               </div>
               <div className="w-[20%] py-3 px-2 hover:bg-gray-300 transition-all duration-300 ease-in-out">
@@ -104,29 +141,52 @@ const AllCategories = () => {
               className="w-full flex flex-col gap-2 px-3 shadow-md rounded-xs bg-white"
             >
               <div className="w-full flex flex-row justify-between border-y-[1px] border-y-gray-300 items-center">
-                <div className="w-[5%] py-3 px-2">
+                <div className="w-[10%] py-3 px-2">
                   <input type="checkbox" className="border-gray-100" />
                 </div>
-                <div className="w-[5%] py-3 px-2 hover:bg-gray-300 transition-all duration-300 ease-in-out items-center">
+                <div className="w-[10%] py-3 px-2 hover:bg-gray-300 transition-all duration-300 ease-in-out items-center">
                   <p className="text-gray-600 font-medium">{category.id}</p>
                 </div>
-                <div className="w-[20%] py-3 px-2 hover:bg-gray-300 transition-all duration-300 ease-in-out items-center">
+                <div className="w-[25%] py-3 px-2 hover:bg-gray-300 transition-all duration-300 ease-in-out items-center">
                   <p className="text-gray-600 font-medium">{category.name}</p>
                 </div>
-                <div className="w-[20%] py-3 px-2 hover:bg-gray-300 transition-all duration-300 ease-in-out items-center">
-                  <p className="text-gray-600 font-medium">{category.description}</p>
+                <div className="w-[25%] py-3 px-2 hover:bg-gray-300 transition-all duration-300 ease-in-out items-center">
+                  <p className="text-gray-600 font-medium">
+                    {category.description}
+                  </p>
                 </div>
-                <div className=" py-3 px-2 hover:bg-gray-300 transition-all duration-300 ease-in-out">
-                  <img src={category.image} className="w-[50px]"
-                   alt={category.description} />
+                <div className="w-[20%] py-3 px-2 hover:bg-gray-300 transition-all duration-300 ease-in-out">
+                  <img
+                    src={category.image}
+                    className="w-[50px]"
+                    alt={category.description}
+                  />
                 </div>
                 <div className="w-[10%] py-3 px-2 transition-all duration-300 ease-in-out  flex flex-row gap-3">
-                  <button onClick={()=>handleDelete(category.id)} className="text-red-500 mr-4 hover:text-red-600 text-2xl"><MdDelete /></button>
-                  <button onClick={()=>handleUpdate(category.id)} className="text-green-500 hover:text-green-600 text-2xl"><FiEdit3 /></button>
+                  <button
+                    onClick={() => handleDelete(category.id)}
+                    className="text-red-500 mr-4 hover:text-red-600 text-2xl"
+                  >
+                    <MdDelete />
+                  </button>
+                  <button
+                    onClick={() => handleUpdate(category.id)}
+                    className="text-green-500 hover:text-green-600 text-2xl"
+                  >
+                    <FiEdit3 />
+                  </button>
                 </div>
               </div>
             </div>
           ))}
+          <Pagination
+                currentPage={page}
+                limit={categories.pagination.limit}
+                totalItems={categories.pagination.totalItems}
+                totalPages={categories.pagination.totalPage}
+                setCurrentPage={(value) => setPage(value)}
+                setPageSize={(value) => setLimit(value)}
+              />
         </div>
       </div>
     </div>
