@@ -10,40 +10,41 @@ import type {
 import type { ApiResponse } from "../../types/base";
 import fetchWithAuth from "../../services/fetchWithAuth.service";
 
-export const getPaginateCategorieAction = createAsyncThunk<ApiResponse<PaginationCategories>, CategoriesFilter>(
-  "category/getPaginate",
-  async ({search, limit, page}, apiThunk) => {
-    try {
-      const params = new URLSearchParams(
-         { search: search ? search : "", limit: limit ? limit.toString() : "", page: page ? page.toString() : "" }
-      )
-      const response = await fetch(
-        `${import.meta.env.VITE_API_URL}/categories/paginate?${params.toString()}`,
-        {
-          method: "GET",
-          headers: {
-            accept: "application/json",
-          },
-        }
-      );
+export const getPaginateCategorieAction = createAsyncThunk<
+  ApiResponse<PaginationCategories>,
+  CategoriesFilter
+>("category/getPaginate", async ({ search, limit, page }, apiThunk) => {
+  try {
+    const params = new URLSearchParams({
+      search: search ? search : "",
+      limit: limit ? limit.toString() : "",
+      page: page ? page.toString() : "",
+    });
+    const response = await fetch(
+      `${import.meta.env.VITE_API_URL}/categories/paginate?${params.toString()}`,
+      {
+        method: "GET",
+        headers: {
+          accept: "application/json",
+        },
+      },
+    );
 
-      if (!response.ok) {
-        const error = await response.json();
-        console.log("Failed to download Categories: ", error);
-        return apiThunk.rejectWithValue("Failed to download Categories.");
-      }
-      const result = await response.json();
-
-      return result;
-    } catch (error) {
-      console.log("Error on download Categories: ", error);
-      return apiThunk.rejectWithValue(
-        (error as { message: string }).message ||
-          "Error on download Categories."
-      );
+    if (!response.ok) {
+      const error = await response.json();
+      console.log("Failed to download Categories: ", error);
+      return apiThunk.rejectWithValue("Failed to download Categories.");
     }
+    const result = await response.json();
+
+    return result;
+  } catch (error) {
+    console.log("Error on download Categories: ", error);
+    return apiThunk.rejectWithValue(
+      (error as { message: string }).message || "Error on download Categories.",
+    );
   }
-);
+});
 
 export const getAllCategory = createAsyncThunk<ApiResponse<Category[]>>(
   "category/getAll",
@@ -56,7 +57,7 @@ export const getAllCategory = createAsyncThunk<ApiResponse<Category[]>>(
           headers: {
             accept: "application/json",
           },
-        }
+        },
       );
 
       if (!response.ok) {
@@ -71,13 +72,11 @@ export const getAllCategory = createAsyncThunk<ApiResponse<Category[]>>(
       console.log("Error on download Categories: ", error);
       return apiThunk.rejectWithValue(
         (error as { message: string }).message ||
-          "Error on download Categories."
+          "Error on download Categories.",
       );
     }
-  }
+  },
 );
-
-
 
 export const createCategory = createAsyncThunk<
   ApiResponse<Category>,
@@ -94,7 +93,7 @@ export const createCategory = createAsyncThunk<
       {
         method: "POST",
         body: formdata,
-      }
+      },
     );
 
     if (!response.ok) {
@@ -108,7 +107,7 @@ export const createCategory = createAsyncThunk<
   } catch (error) {
     console.log("Error on create Categories: ", error);
     return apiThunk.rejectWithValue(
-      (error as { message: string }).message || "Error on create Categories."
+      (error as { message: string }).message || "Error on create Categories.",
     );
   }
 });
@@ -121,7 +120,7 @@ export const deleteCategory = createAsyncThunk<ApiResponse<Category>, number>(
         `${import.meta.env.VITE_API_URL}/categories/${id}`,
         {
           method: "DELETE",
-        }
+        },
       );
 
       if (!response.ok) {
@@ -135,16 +134,17 @@ export const deleteCategory = createAsyncThunk<ApiResponse<Category>, number>(
     } catch (error) {
       console.log("Error on delete Categories: ", error);
       return apiThunk.rejectWithValue(
-        (error as { message: string }).message || "Error on delete Categories."
+        (error as { message: string }).message || "Error on delete Categories.",
       );
     }
-  }
+  },
 );
 
 export const updateCategory = createAsyncThunk<
   ApiResponse<Category>,
   CategoryDtoUpdate
 >("category/updateCategory", async (category, apiThunk) => {
+  console.log("values to update : ", category);
   const formdata = new FormData();
   formdata.append("name", category.name);
   formdata.append("description", category.description);
@@ -156,8 +156,9 @@ export const updateCategory = createAsyncThunk<
       {
         method: "PUT",
         body: formdata,
-      }
+      },
     );
+    console.log("response : ", response);
 
     if (!response.ok) {
       const error = await response.json();
@@ -170,7 +171,7 @@ export const updateCategory = createAsyncThunk<
   } catch (error) {
     console.log("Error on updating Categories: ", error);
     return apiThunk.rejectWithValue(
-      (error as { message: string }).message || "Error on updating Categories."
+      (error as { message: string }).message || "Error on updating Categories.",
     );
   }
 });
