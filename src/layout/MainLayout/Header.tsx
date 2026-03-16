@@ -101,6 +101,18 @@ const Header = () => {
                 Home
               </NavLink>
             </li>
+            <li>
+              <NavLink
+                to="chat"
+                className={({ isActive }) =>
+                  isActive
+                    ? "text-[#fa3253] transition-all duration-150 font-medium"
+                    : "hover:text-[#fa3253] transition-all duration-150 font-medium"
+                }
+              >
+                Chat
+              </NavLink>
+            </li>
             <div className="">
               <li className="flex items-center gap-2 hover:text-[#fa3253] transition-all duration-150 font-medium">
                 <NavLink

@@ -6,9 +6,24 @@ export interface User extends BaseEntity {
   lastName: string;
   profile: string;
   password: string;
-  roles: string[];
-  permissionKeys: string[];
-  permissions: Permission[];
+  resetToken?: string;
+  resetTokenExpires?: string;
+  roles: Role[];
+  permissionKeys?: string[];
+  permissions?: Permission[];
+}
+
+export interface Role {
+  roleId: number;
+  userId: number;
+  assignAt: string;
+  role: Role2;
+}
+
+export interface Role2 extends BaseEntity {
+  name: string;
+  roleKey: string;
+  description: string;
 }
 
 export interface AuthToken {
@@ -51,4 +66,3 @@ export type ResetPasswordDto = {
   email: string;
   password: string;
 };
-

@@ -121,7 +121,11 @@ const Home = () => {
               key={index.toString()}
               className="bg-white min-w-[200px] max-h-[400px] border border-[#000]/10 rounded-xl shadow-md overflow-hidden hover:shadow-lg transition-shadow duration-300"
             >
-              <img className="w-full h-[200px] " src={item.images.image} alt="Product Image" />
+              <img
+                className="w-full h-[200px] "
+                src={item.images.image}
+                alt="Product Image"
+              />
               <div className="p-4 h-[full] flex flex-col">
                 <span className="text-sm text-gray-500 uppercase tracking-wide">
                   {item.category.name}
