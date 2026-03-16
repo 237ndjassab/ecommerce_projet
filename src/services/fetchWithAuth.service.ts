@@ -21,7 +21,7 @@ const fetchWithAuth = async (
   const state = store.getState();
 
   // On récupère le token actuel
-  let token = state.auth.token;
+  let token = state.auth.token; // { accessToken: string, refreshToken: string } ou null
 
   /**
    * Vérification du token :
