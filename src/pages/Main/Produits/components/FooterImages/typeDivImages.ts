@@ -9,5 +9,5 @@ export interface DivImagesType {
   price_after: number,
   price_before?: number,
   ident: number|null,
-  id: number
+  id: number,
 }

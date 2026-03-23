@@ -1,6 +1,6 @@
 import React from 'react'
 
-const HelpCenter = () => {
+const HelpCenter: React.FC = () => {
   return (
     <div>HelpCenter</div>
   )

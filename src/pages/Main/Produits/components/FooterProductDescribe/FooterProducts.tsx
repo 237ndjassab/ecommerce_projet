@@ -1,6 +1,6 @@
 import { Form, Formik } from "formik";
 import * as Yup from "yup";
-import React, { useState } from "react";
+import  { useState } from "react";
 import { AnimatePresence, motion } from "motion/react";
 import { FaStar } from "react-icons/fa";
 import InputField from "./InputField";

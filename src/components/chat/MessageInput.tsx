@@ -2,37 +2,78 @@ import { useState } from "react";
 import Utils from "../../helpers/Utils";
 import useAppSelector from "../../hooks/useAppSelector";
 import { socket } from "../../services/socket";
-import type { Message } from "../../pages/Main/types.chat.ts";
+import { setNewMessage } from "../../store/chat/slice";
+import useAppDispatch from "../../hooks/useAppDispatch";
+import type { User } from "../../types/user";
 
-type MessageInputProps = {
-  setMessages: React.Dispatch<React.SetStateAction<Message[]>>;
-};
 
-export default function MessageInput({ setMessages }: MessageInputProps) {
-  const user = useAppSelector((state) => state.auth.userInfo);
-  const senderId = user?.user.id;
-
+export default function MessageInput() {
+  const dispatch = useAppDispatch();
+  const [isSending, setIsSending] = useState(false);
   const [message, setMessage] = useState("");
+  const user = useAppSelector((state) => state.auth.userInfo);
   const conversationId = Utils.getConversationId();
 
+
   const handleSendMsg = () => {
-    if (!message.trim()) return;
+    if (!message.trim() || isSending) return;
 
-    const newMessage: Message = {
-      content: message,
-      senderId,
-    };
-
-    // 🔥 affichage immédiat (optimistic UI)
-    setMessages((prev) => [...prev, newMessage]);
+    setIsSending(true);
 
     socket.emit("sendMessage", {
-      senderId,
+      userId: user?.user.id,
       conversationId,
       message,
+    }, (response: { status: "ok" | "error", error: string | null, messageId: number }) => {
+      console.log("ACK reçu :", response);
+
+      setIsSending(false);
+
+      if (response.status === "ok") {
+        console.log("Message bien enregistré");
+        dispatch(setNewMessage({
+          id: response.messageId,
+          conversationId,
+          content: message,
+          fileName: "",
+          fileType: "",
+          fileUrl: "",
+          senderId: user?.user.id as number,
+          seen: false,
+          createdAt: Date(),
+          sender: user?.user as User,
+        }));
+        setMessage("");
+      } else {
+        console.log("Erreur:", response.error);
+      }
     });
 
-    setMessage("");
+
+  };
+
+  const handleKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
+    if (e.key === "Enter") {
+      e.preventDefault();
+      handleSendMsg();
+    }
+  };
+
+  let typingTimeout: number;
+  const handleTyping = () => {
+    clearTimeout(typingTimeout);
+
+    socket.emit("typing", {
+      userId: user?.user.id,
+      conversationId: conversationId,
+    });
+
+    typingTimeout = setTimeout(() => {
+      socket.emit("stopTyping", {
+        userId: user?.user.id,
+        conversationId,
+      });
+    }, 1000);
   };
 
   return (
@@ -40,13 +81,19 @@ export default function MessageInput({ setMessages }: MessageInputProps) {
       <input
         type="text"
         value={message}
-        onChange={(e) => setMessage(e.target.value)}
+        onChange={(e) => {
+          setMessage(e.target.value);
+          handleTyping();
+        }}
+        onKeyDown={handleKeyDown}
         placeholder="Tape ton message..."
         className="flex-1 rounded-full border border-gray-300 px-4 py-2 text-sm focus:border-pink-500 focus:ring focus:ring-pink-200 outline-none transition"
       />
 
       <button
-        onClick={()=>handleSendMsg()}
+        type="button"
+        disabled={isSending || !message.trim()}
+        onClick={() => handleSendMsg()}
         className="ml-3 rounded-full bg-pink-600 px-5 py-2 text-sm font-semibold text-white shadow hover:bg-pink-700 transition-colors"
       >
         Envoyer

@@ -1,36 +1,56 @@
-import { useEffect, useState } from "react";
-
+import { useEffect } from "react";
 import useAppSelector from "../../hooks/useAppSelector.ts";
 import { socket } from "../../services/socket.ts";
 import ChatLayout from "../../components/chat/ChatLayout.tsx";
+import useAppDispatch from "../../hooks/useAppDispatch.ts";
+import { checkUserOnline } from "../../store/users/slice.ts";
 
 const Chat = () => {
-  const [onlineUsers, setOnlineUser] = useState<number[]>([]);
-  
   const user = useAppSelector((state) => state.auth.userInfo);
-  const id = user?.user.id;
+
+
+  const dispatch = useAppDispatch();
 
   useEffect(() => {
-    //connexion au serveur temps reel
-    socket.on("connect", () => {
+    console.log("socket", socket);
+    console.log("Socket connecté:", socket.id);
+
+    // Si déjà connecté → émettre directement
+    if (socket.connected) {
+      console.log("user?.user.id", user?.user.id);
+      socket.emit("userConnected", { userId: user?.user.id });
+      socket.emit("joinRoom", { userId: user?.user.id });
+    }
+
+    // Si connexion arrive plus tard
+    const handleConnect = () => {
       console.log("Socket connecté:", socket.id);
+      socket.emit("userConnected", { userId: user?.user.id });
+    };
 
-      //informer le serveur que l'utilisateur est connecté
-      socket.emit("userConnected", id);
+    socket.on("connect", handleConnect);
 
-      //recevoir les utilisateurs en ligne
-      socket.on("onlineUsers", (users: number[]) => {
-        console.log("users online : ", users);
-        setOnlineUser(users);
-      });
+    //informer le serveur que l'utilisateur est connecté
+    socket.emit("userConnected", { userId: user?.user.id });
+
+    //recevoir les utilisateurs en ligne
+    socket.on("onlineUsers", (userIds: number[]) => {
+      dispatch(checkUserOnline(userIds))
     });
-    return () => {
-      socket.off("connect");
-      socket.off("onlineUsers");
-    }; 
-  }, []);
 
-  return <ChatLayout isconnect = {onlineUsers} />;
+    socket.on("error", (error) => {
+      console.log("error", error);
+    })
+
+    return () => {
+      socket.emit("userDisconnected", { userId: user?.user.id });
+      socket.off("connect", handleConnect);
+      socket.off("onlineUsers");
+      socket.off("error");
+    };
+  }, [user, dispatch]);
+
+  return <ChatLayout />;
 };
 
 export default Chat;

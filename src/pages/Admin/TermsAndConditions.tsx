@@ -1,6 +1,6 @@
 import React from 'react'
 
-const TermsAndConditions = () => {
+const TermsAndConditions: React.FC = () => {
   return (
     <div>TermsAndConditions</div>
   )
