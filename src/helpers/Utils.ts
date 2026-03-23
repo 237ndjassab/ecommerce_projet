@@ -2,12 +2,24 @@ import type { AuthInfo } from "../types/user";
 import { jwtDecode } from "jwt-decode";
 
 const USER = btoa("ENTRY-01");
+const CONVERSATION_ID = btoa("CONVERSATION_ID");
 
 class Utils {
   static setAuthInfo(data: AuthInfo) {
     localStorage.setItem(USER, JSON.stringify(data));
   }
+  static setConversationId(id: number) {
+    localStorage.setItem(CONVERSATION_ID, JSON.stringify(id));
+  }
 
+  static getConversationId() {
+  const conversationId = localStorage.getItem(CONVERSATION_ID);
+  if (conversationId) {
+    return JSON.parse(conversationId);
+  } else {
+    return null;
+  }
+}
   static getAuthInfo() {
     const userInfo = localStorage.getItem(USER);
     if (userInfo) {
@@ -35,7 +47,7 @@ class Utils {
       if (!decoded.exp) return true; // Pas de champ exp => considéré comme expiré
       // decoded.exp, la date est en seconde
       // Date.now(), la date est en milliseconde
-      const now = Math.floor(Date.now() / 1000);// Conversion pour passer en seconde
+      const now = Math.floor(Date.now() / 1000); // Conversion pour passer en seconde
       return decoded.exp < now;
     } catch (err) {
       console.error("Token invalide :", err);

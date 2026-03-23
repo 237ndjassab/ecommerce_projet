@@ -4,8 +4,9 @@ import { FaAngleRight } from "react-icons/fa";
 import { MdDelete, MdSearch } from "react-icons/md";
 import useAppDispatch from "../../../../hooks/useAppDispatch";
 import useAppSelector from "../../../../hooks/useAppSelector";
-import { getAllProduct } from "../../../../store/product/actions";
+import { deleteProduct, getAllProduct } from "../../../../store/product/actions";
 import { FiEdit3 } from "react-icons/fi";
+import { toast } from "react-toastify";
 
 const AllProducts: React.FC = () => {
   const dispatch = useAppDispatch();
@@ -13,6 +14,18 @@ const AllProducts: React.FC = () => {
   useEffect(() => {
     dispatch(getAllProduct());
   }, [dispatch]);
+
+  const handleDelete = async (id: number) => {
+      const response = await dispatch(deleteProduct(id));
+  
+      if (response.meta.requestStatus === "fulfilled") {
+        toast.success("Categorie supprimée avec succès.");
+      }
+  
+      if (response.meta.requestStatus === "rejected") {
+        toast.error("Echec de suppression de la categorie.");
+      }
+    };
 
   return (
     <div className="w-full min-h-screen px-6 py-4 ">
@@ -137,7 +150,7 @@ const AllProducts: React.FC = () => {
                             </div> */}
                   <div className="w-[10%] py-3 px-2 transition-all duration-300 ease-in-out  flex flex-row justify-center items-center gap-1">
                     <button
-                      onClick={() => null}
+                      onClick={() => handleDelete(produit.id)}
                       className="text-red-500 mr-4 hover:text-red-600 text-2xl"
                     >
                       <MdDelete />

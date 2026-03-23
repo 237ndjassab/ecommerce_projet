@@ -98,7 +98,7 @@ const ConfirmOTP: React.FC  = () => {
                 className="my-2 font-medium text-[#d62243]"
               >
                 Renvoyer le code
-              </button>{" "}
+              </button>
               <br />
             </div>
           </form>
