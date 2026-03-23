@@ -44,14 +44,14 @@ const conversationSlice = createSlice({
   name: "chat",
   initialState,
   reducers: {
-    checkUserOnline: (state, action: PayloadAction<number[]>) => {
-      state.conversations.map(item => {
+    checkUserOnline: () => {
+      // state.conversations.map(item => {
         // if (action.payload.includes(item.id)) {
         //   item.isOnline = true;
         // } else {
         //   item.isOnline = false;
         // }
-      });
+      // });
     },
     setNewMessage: (state, action: PayloadAction<Message>) => {
       state.messages.push(action.payload);
