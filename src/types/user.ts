@@ -8,9 +8,9 @@ export interface User extends BaseEntity {
   password: string;
   resetToken?: string;
   resetTokenExpires?: string;
-  roles?: Role[];
-  permissionKeys?: string[];
-  permissions?: Permission[];
+  roles: string[];
+  permissionKeys: string[];
+  permissions: Permission[];
   isOnline: boolean
   lastSeen: string
 }

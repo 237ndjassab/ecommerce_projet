@@ -49,7 +49,7 @@ const App: React.FC = () => {
               path="/admin"
               element={
                 <ProtectRoute>
-                  <CheckRole requireRole="ADMIN" isPage={true}>
+                  <CheckRole requireRole={["ADMIN", "SUPERADMIN"]} isPage={true}>
                     <AdminLayout />
                   </CheckRole>{" "}
                 </ProtectRoute>
