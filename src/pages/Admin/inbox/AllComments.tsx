@@ -1,6 +1,6 @@
 import React from 'react'
 
-const AllComments = () => {
+const AllComments: React.FC = () => {
   return (
     <div>AllComments</div>
   )

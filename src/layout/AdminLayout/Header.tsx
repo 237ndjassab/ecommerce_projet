@@ -7,7 +7,7 @@ import { FaUserTie } from "react-icons/fa6";
 type Change = {
   toggleSidebar: () => void;
 }
-const Header = ({toggleSidebar}:Change) => {
+const Header: React.FC<Change> = ({toggleSidebar}) => {
   return (
     <>
       <header className="w-[100%] sticky top-0 h-fit px-2 py-0 bg-white border border-x-0 border-y-gray-200">

@@ -1,6 +1,6 @@
 import React from 'react'
 
-const AllUsers = () => {
+const AllUsers: React.FC = () => {
   return (
     <div>AllUsers</div>
   )
