@@ -11,8 +11,8 @@ export interface User extends BaseEntity {
   roles?: Role[];
   permissionKeys?: string[];
   permissions?: Permission[];
-  isOnline?: boolean
-  lastSeen?: string
+  isOnline: boolean
+  lastSeen: string
 }
 
 export interface Role {

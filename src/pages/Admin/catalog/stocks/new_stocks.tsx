@@ -1,10 +1,9 @@
-import React, { useEffect, useState } from "react";
+import  { useEffect } from "react";
 import { useNavigate } from "react-router";
 import useAppDispatch from "../../../../hooks/useAppDispatch";
 import * as Yup from "yup";
 import { toast } from "react-toastify";
 import {
-  ErrorMessage,
   FieldArray,
   Form,
   Formik,
@@ -18,7 +17,6 @@ import { getAllProduct } from "../../../../store/product/actions";
 
 const New_stocks = () => {
     const navigate = useNavigate();
-    const [preview, setPreview] = useState<string | null>(null);
     const dispatch = useAppDispatch();
     useEffect(() => {
       dispatch(getAllProduct());
@@ -148,7 +146,7 @@ const New_stocks = () => {
                         <div className="w-full flex flex-col gap-4">
                           {form.values.lines &&
                             form.values.lines.length > 0 &&
-                            form.values.lines.map((line, index) => (
+                            form.values.lines.map((_: unknown, index: number) => (
                               <div
                                 key={index}
                                 className="flex flex-col gap-3 w-full"

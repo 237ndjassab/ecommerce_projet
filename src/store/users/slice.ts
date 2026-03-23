@@ -1,4 +1,4 @@
-import { createSlice } from "@reduxjs/toolkit";
+import { createSlice, type PayloadAction } from "@reduxjs/toolkit";
 import { getAllUser } from "./action.ts";
 
 import type { ApiError, statusType } from "../../types/base";
@@ -26,7 +26,17 @@ const initialState: userState = {
 const userSlice = createSlice({
   name: "user",
   initialState,
-  reducers: {},
+  reducers: {
+    checkUserOnline: (state, action: PayloadAction<number[]>) => {
+      state.items.map(item => {
+        if (action.payload.includes(item.id)) {
+          item.isOnline = true;
+        } else {
+          item.isOnline = false;
+        }
+      });
+    }
+  },
   extraReducers: (builder) => {
     builder
       .addCase(getAllUser.pending, (state) => {
@@ -47,4 +57,6 @@ const userSlice = createSlice({
       });
   },
 });
+
+export const {checkUserOnline} = userSlice.actions;
 export default userSlice;

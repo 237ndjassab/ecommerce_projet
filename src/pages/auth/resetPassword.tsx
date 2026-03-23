@@ -23,6 +23,7 @@ const ResetPassword = () => {
 
   const initialValues = {
     email: email,
+    password: ""
   };
 
   const validationSchema = Yup.object({

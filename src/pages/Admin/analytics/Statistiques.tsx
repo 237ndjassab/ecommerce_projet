@@ -1,6 +1,6 @@
 import React from 'react'
 
-const Statistiques = () => {
+const Statistiques : React.FC= () => {
   return (
     <div>Statistiques</div>
   )

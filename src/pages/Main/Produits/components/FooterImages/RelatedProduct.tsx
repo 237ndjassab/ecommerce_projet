@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import DivImages from "./DivImages";
 import "./index.css";
 
-const RelatedProduct = () => {
+const RelatedProduct: React.FC  = () => {
   const [ident, setIdent] = useState<number | null>(null); //ident represente la div survolée dans ce cas ident possede l'id de la div
   //je recupere ident et l'id de la div et je les compare dans le DivImages Component
   console.log(ident);

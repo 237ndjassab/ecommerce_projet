@@ -1,4 +1,4 @@
-import { Link, useLocation, useNavigate } from "react-router";
+import {  useLocation, useNavigate } from "react-router";
 import { useEffect, useState } from "react";
 import OtpInput from "react-otp-input";
 import otpimg from "../../assets/images/otp.png";
@@ -9,7 +9,7 @@ import {
   verifyOtpAction,
 } from "../../store/auth/actions";
 
-const ConfirmOTP = () => {
+const ConfirmOTP: React.FC  = () => {
   const dispatch = useAppDispatch();
   const [otp, setOtp] = useState("");
   const location = useLocation();
