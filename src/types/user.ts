@@ -8,9 +8,11 @@ export interface User extends BaseEntity {
   password: string;
   resetToken?: string;
   resetTokenExpires?: string;
-  roles: Role[];
+  roles?: Role[];
   permissionKeys?: string[];
   permissions?: Permission[];
+  isOnline?: boolean
+  lastSeen?: string
 }
 
 export interface Role {

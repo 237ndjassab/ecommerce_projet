@@ -128,7 +128,7 @@ const Home = () => {
               />
               <div className="p-4 h-[full] flex flex-col">
                 <span className="text-sm text-gray-500 uppercase tracking-wide">
-                  {item.category.name}
+                  {item.category?.name}
                 </span>
                 <h2 className="mt-2 text-lg font-semibold">{item.name}</h2>
                 <p className="mt-1 text-lg font-bold">${item.price}</p>

@@ -4,39 +4,23 @@ import { getAllUser } from "./action.ts";
 import type { ApiError, statusType } from "../../types/base";
 import type { User } from "../../types/user.ts";
 
-export interface CategoryState {
+export interface userState {
   items: User[];
   status: {
     getAllUser: statusType;
   };
   error: {
-    getAll: ApiError;
+    getAllUser: ApiError;
   };
 }
 
-const initialState: CategoryState = {
+const initialState: userState = {
   items: [],
-  pagination: {
-    totalItems: 0,
-    totalPage: 1,
-    prevPage: 0,
-    currentpage: 1,
-    nextpage: 0,
-    limit: 10,
-  },
   status: {
-    getAll: "idle",
-    getPaginate: "idle",
-    delete: "idle",
-    create: "idle",
-    update: "idle",
+    getAllUser: "idle",
   },
   error: {
-    getAll: { message: null },
-    getPaginate: { message: null },
-    delete: { message: null },
-    create: { message: null },
-    update: { message: null },
+    getAllUser: { message: null },
   },
 };
 const userSlice = createSlice({
@@ -44,7 +28,23 @@ const userSlice = createSlice({
   initialState,
   reducers: {},
   extraReducers: (builder) => {
-    builder.addCase(getAllUser.pending, (state) => {});
+    builder
+      .addCase(getAllUser.pending, (state) => {
+        state.status.getAllUser = "pending";
+        state.error.getAllUser = { message: null };
+      })
+      .addCase(getAllUser.fulfilled, (state, action) => {
+        state.status.getAllUser = "succeeded";
+        if (action.payload) {
+          state.items = action.payload.data;
+        }
+      })
+      .addCase(getAllUser.rejected, (state, action) => {
+        state.status.getAllUser = "failed";
+        if (action.payload) {
+          //gestion d'erreur ici
+        }
+      });
   },
 });
 export default userSlice;
