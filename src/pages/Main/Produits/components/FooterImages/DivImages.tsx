@@ -1,12 +1,8 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import type { DivImagesType } from "./typeDivImages";
 import { AnimatePresence, motion } from "motion/react";
 
 const DivImages = ({
-  images1,
-  imagesAlt1,
-  imagesAlt2,
-  images2,
   categorie,
   cell,
   name,

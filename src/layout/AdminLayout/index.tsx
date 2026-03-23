@@ -4,7 +4,7 @@ import { Outlet } from "react-router";
 import Header from "./Header.js";
 import Footer from "./Footer.js";
 
-const AdminLayout = () => {
+const AdminLayout: React.FC = () => {
   const [isOpen, setIsOpen] = useState(true);
   const handleToggleSidebar = () => {
     setIsOpen((previousValue)=>!previousValue);

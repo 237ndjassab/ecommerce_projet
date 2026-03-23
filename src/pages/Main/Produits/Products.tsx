@@ -5,7 +5,7 @@ import NavProducts from './components/NavProducts'
 import RelatedProduct from './components/FooterImages/RelatedProduct'
 import HeaderProduct from './components/HeaderProduct/HeaderProduct'
 
-const Products = () => {
+const Products : React.FC = () => {
   return (
     <div className='w-full'>
       <NavProducts lien="Home" souslien="product" product="OPPO Reno13 F 8GB 256GB New"/>

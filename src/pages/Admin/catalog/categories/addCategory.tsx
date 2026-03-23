@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import NavProducts from "../../../Main/Produits/components/NavProducts";
 import { Formik, Form, type FormikHelpers, ErrorMessage } from "formik";
 import * as Yup from "yup";
@@ -11,8 +11,8 @@ import { toast } from "react-toastify";
 import { useNavigate } from "react-router";
 
 const AddCategory = () => {
-  const navigate = useNavigate()
-  const dispatch = useAppDispatch()
+  const navigate = useNavigate();
+  const dispatch = useAppDispatch();
   const [preview, setPreview] = useState<string | null>(null);
   const initialValues: CategoryDto = {
     name: "",
@@ -51,24 +51,24 @@ const AddCategory = () => {
       }),
   });
   const handleSubmit = async (
-      values: CategoryDto,
-      formikHelpers: FormikHelpers<CategoryDto>
-    ) => {
-      formikHelpers.setSubmitting(true);
-      const response = await dispatch(createCategory(values));
-  
-      if (response.meta.requestStatus === "fulfilled") {
-        toast.success("Categorie créée avec succès.");
-        formikHelpers.resetForm();
-        navigate("/admin/allcategory");
-      }
-  
-      if (response.meta.requestStatus === "rejected") {
-        toast.error("Echec de creation de la categorie.");
-      }
-  
-      formikHelpers.setSubmitting(false);
-    };
+    values: CategoryDto,
+    formikHelpers: FormikHelpers<CategoryDto>
+  ) => {
+    formikHelpers.setSubmitting(true);
+    const response = await dispatch(createCategory(values));
+
+    if (response.meta.requestStatus === "fulfilled") {
+      toast.success("Categorie créée avec succès.");
+      formikHelpers.resetForm();
+      navigate("/admin/allcategory");
+    }
+
+    if (response.meta.requestStatus === "rejected") {
+      toast.error("Echec de creation de la categorie.");
+    }
+
+    formikHelpers.setSubmitting(false);
+  };
   return (
     <div className="w-full min-h-screen px-6 py-4 ">
       <div className="w-full flex flex-col mb-2">
@@ -91,7 +91,11 @@ const AddCategory = () => {
                   <h1 className="font-semibold text-3xl text-[#1a1a2b]">
                     Edit Category
                   </h1>
-                  <button type="submit" disabled={formik.isSubmitting} className=" bg-[#fa3253] hover:bg-[#fa173d] text-white transition-all duration-300 ease-in-out border-[1px] border-gray-200 rounded-md cursor-pointer px-2.5 py-1.5  hover:shadow-md text-base flex flex-row justify-center items-center">
+                  <button
+                    type="submit"
+                    disabled={formik.isSubmitting}
+                    className=" bg-[#fa3253] hover:bg-[#fa173d] text-white transition-all duration-300 ease-in-out border-[1px] border-gray-200 rounded-md cursor-pointer px-2.5 py-1.5  hover:shadow-md text-base flex flex-row justify-center items-center"
+                  >
                     {formik.isSubmitting ? "creation..." : " créer"}
                   </button>
                 </div>

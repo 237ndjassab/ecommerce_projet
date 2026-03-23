@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import NavProducts from "../../../Main/Produits/components/NavProducts";
 import { Formik, Form, type FormikHelpers, ErrorMessage } from "formik";
 import * as Yup from "yup";
@@ -13,8 +13,8 @@ import useAppSelector from "../../../../hooks/useAppSelector";
 // import { deleteCategory } from "../../../../store/category/actions";
 
 const UpdateCategory = () => {
-  const navigate = useNavigate()
-  const dispatch = useAppDispatch()
+  const navigate = useNavigate();
+  const dispatch = useAppDispatch();
   const location = useLocation();
   const idcategory = location.state ? location.state : null;
   const categories = useAppSelector((state) => state.category.items);
@@ -51,52 +51,54 @@ const UpdateCategory = () => {
       }),
   });
 
-//   const categories = useAppSelector((state)=> state.category.items)
+  //   const categories = useAppSelector((state)=> state.category.items)
 
-  const categoryToUpdate = categories.filter(item => idcategory === item.id)
+  const categoryToUpdate = categories.filter((item) => idcategory === item.id);
 
   console.log(categoryToUpdate);
   console.log(categoryToUpdate[0]);
   console.log(idcategory);
-  
+
   const initialValues: CategoryDto = {
     name: categoryToUpdate ? categoryToUpdate[0].name : "",
     image: categoryToUpdate ? categoryToUpdate[0].image : "",
     description: categoryToUpdate ? categoryToUpdate[0].description : "",
   };
-  
+
   //   const [preview, setPreview] = useState<string | null>(null);
   const [preview, setPreview] = useState<string | null>(
-    categoryToUpdate && categoryToUpdate[0]?.image 
-        ? categoryToUpdate[0].image   // URL de l'image existante
-        : null
-    );
+    categoryToUpdate && categoryToUpdate[0]?.image
+      ? categoryToUpdate[0].image // URL de l'image existante
+      : null
+  );
 
   const handleSubmit = async (
-      idcategory: number | null,
-      values: CategoryDto,
-      formikHelpers: FormikHelpers<CategoryDto>
-    ) => {
-      formikHelpers.setSubmitting(true);
-      const response = await dispatch(updateCategory({
+    idcategory: number | null,
+    values: CategoryDto,
+    formikHelpers: FormikHelpers<CategoryDto>
+  ) => {
+    formikHelpers.setSubmitting(true);
+    const response = await dispatch(
+      updateCategory({
         id: idcategory as number,
         name: values.name,
         description: values.description,
         image: values.image,
-      }));
-  
-      if (response.meta.requestStatus === "fulfilled") {
-        toast.success("Categorie mise a jour avec succès.");
-        formikHelpers.resetForm();
-        navigate("/admin/allcategory");
-      }
-  
-      if (response.meta.requestStatus === "rejected") {
-        toast.error("Echec de mise a jour de la categorie.");
-      }
-  
-      formikHelpers.setSubmitting(false);
-    };
+      })
+    );
+
+    if (response.meta.requestStatus === "fulfilled") {
+      toast.success("Categorie mise a jour avec succès.");
+      formikHelpers.resetForm();
+      navigate("/admin/allcategory");
+    }
+
+    if (response.meta.requestStatus === "rejected") {
+      toast.error("Echec de mise a jour de la categorie.");
+    }
+
+    formikHelpers.setSubmitting(false);
+  };
   return (
     <div className="w-full min-h-screen px-6 py-4 ">
       <div className="w-full flex flex-col mb-2">
@@ -121,7 +123,11 @@ const UpdateCategory = () => {
                   <h1 className="font-semibold text-3xl text-[#1a1a2b]">
                     Edit Category
                   </h1>
-                  <button type="submit" disabled={formik.isSubmitting} className=" bg-[#fa3253] hover:bg-[#fa173d] text-white transition-all duration-300 ease-in-out border-[1px] border-gray-200 rounded-md cursor-pointer px-2.5 py-1.5  hover:shadow-md text-base flex flex-row justify-center items-center">
+                  <button
+                    type="submit"
+                    disabled={formik.isSubmitting}
+                    className=" bg-[#fa3253] hover:bg-[#fa173d] text-white transition-all duration-300 ease-in-out border-[1px] border-gray-200 rounded-md cursor-pointer px-2.5 py-1.5  hover:shadow-md text-base flex flex-row justify-center items-center"
+                  >
                     {formik.isSubmitting ? "modification..." : " modifier"}
                   </button>
                 </div>
@@ -158,17 +164,17 @@ const UpdateCategory = () => {
                         //   const file = e.currentTarget.files?.[0] || null;
                         //   formik.setFieldValue("image", file);
                         onChange={(e) => {
-                            const file = e.currentTarget.files?.[0] || null;
-                            formik.setFieldValue("image", file);
+                          const file = e.currentTarget.files?.[0] || null;
+                          formik.setFieldValue("image", file);
 
-                            if (file) {
+                          if (file) {
                             const url = URL.createObjectURL(file);
                             setPreview(url);
-                            }else {
+                          } else {
                             setPreview(null);
-                            }
+                          }
                         }}
-                          // Générer le preview
+                        // Générer le preview
                         //   if (file) {
                         //     const url = URL.createObjectURL(file);
                         //     setPreview(url);

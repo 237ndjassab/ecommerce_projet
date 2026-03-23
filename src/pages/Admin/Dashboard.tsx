@@ -1,4 +1,4 @@
-import React from "react";
+
 import { FaStar } from "react-icons/fa";
 import { FaArrowTrendDown, FaArrowTrendUp } from "react-icons/fa6";
 import { SlOptionsVertical } from "react-icons/sl";
