@@ -12,6 +12,7 @@ import Register from "./pages/auth/register";
 import Login from "./pages/auth/login";
 import ForgotPassword from "./pages/auth/forgotPassword";
 import ConfirmOTP from "./pages/auth/confirmOtp";
+import ResetPassword from "./pages/auth/resetPassword";
 import { Provider } from "react-redux";
 import { store } from "./store/store";
 import AdminLayout from "./layout/AdminLayout";
@@ -28,7 +29,6 @@ import CheckRole from "./components/common/CheckRole";
 import Chat from "./pages/Main/Chat.tsx";
 
 const App: React.FC = () => {
-  
   return (
     <>
       <Provider store={store}>

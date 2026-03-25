@@ -10,22 +10,8 @@ import collection3 from "../../assets/images/collection-3.jpg";
 import { Link, NavLink } from "react-router";
 import useAppSelector from "../../hooks/useAppSelector";
 import CheckRole from "../../components/common/CheckRole";
-import { FaChevronDown } from "react-icons/fa";
-import { FaSearch } from "react-icons/fa";
-import { BiUser } from "react-icons/bi";
-import { FaRegHeart } from "react-icons/fa";
-import { MdOutlineShoppingCart } from "react-icons/md";
-import { BsFlower1 } from "react-icons/bs";
-import logo from "../../assets/images/logo.png";
-import collection2 from "../../assets/images/collection-2.jpg";
-import collection3 from "../../assets/images/collection-3.jpg";
-import { Link, NavLink } from "react-router";
-import useAppSelector from "../../hooks/useAppSelector";
-import CheckRole from "../../components/common/CheckRole";
 
 const Header = () => {
-  const auth = useAppSelector((state) => state.auth);
-
   const auth = useAppSelector((state) => state.auth);
 
   return (

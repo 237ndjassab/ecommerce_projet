@@ -9,30 +9,8 @@ import useAppDispatch from "../../hooks/useAppDispatch";
 import { getAllCategory } from "../../store/category/actions";
 import useAppSelector from "../../hooks/useAppSelector";
 import { getAllProduct } from "../../store/product/actions";
-import landing from "../../assets/images/landingrbg.png";
-import { TbCategory } from "react-icons/tb";
-import shoe1 from "../../assets/images/shoe1.jpg";
-import shoe2 from "../../assets/images/shoe2.jpg";
-import shoe3 from "../../assets/images/shoe3.jpg";
-import shoe4 from "../../assets/images/shoe4.jpg";
-import { useEffect } from "react";
-import useAppDispatch from "../../hooks/useAppDispatch";
-import { getAllCategory } from "../../store/category/actions";
-import useAppSelector from "../../hooks/useAppSelector";
-import { getAllProduct } from "../../store/product/actions";
 
 const Home = () => {
-  const dispatch = useAppDispatch();
-  const products = useAppSelector((state) => state.product);
-  const categories = useAppSelector((state) => state.category);
-
-  console.log(categories.items);
-
-  useEffect(() => {
-    dispatch(getAllProduct());
-    dispatch(getAllCategory());
-  }, [dispatch]);
-
   const dispatch = useAppDispatch();
   const products = useAppSelector((state) => state.product);
   const categories = useAppSelector((state) => state.category);
@@ -86,58 +64,11 @@ const Home = () => {
           </div>
         </div>
         <div className="p-8 grid grid-cols-3 w-3/4 gap-4">
-          <div className="bg-white border border-[#000]/10 rounded-xl shadow-md overflow-hidden hover:shadow-lg transition-shadow duration-300">
-            <img className="w-full" src={shoe1} alt="Product Image" />
-            <div className="p-4">
-              <span className="text-sm text-gray-500 uppercase tracking-wide">
-                Chaussure
-              </span>
-              <h2 className="mt-2 text-lg font-semibold">Basket</h2>
-              <p className="mt-1 text-lg font-bold">$49.99</p>
-              <button className="mt-4 w-full bg-[#fa3253] text-white py-2 px-4 rounded-lg hover:bg-[#fa183e] transition-colors duration-300">
-                Order
-              </button>
-            </div>
-          </div>
-          <div className="bg-white border border-[#000]/10 rounded-xl shadow-md overflow-hidden hover:shadow-lg transition-shadow duration-300">
-            <img className="w-full" src={shoe2} alt="Product Image" />
-            <div className="p-4">
-              <span className="text-sm text-gray-500 uppercase tracking-wide">
-                Chaussure
-              </span>
-              <h2 className="mt-2 text-lg font-semibold">Basket</h2>
-              <p className="mt-1 text-lg font-bold">$49.99</p>
-              <button className="mt-4 w-full bg-[#fa3253] text-white py-2 px-4 rounded-lg hover:bg-[#fa183e] transition-colors duration-300">
-                Order
-              </button>
-            </div>
-          </div>
-          <div className="bg-white border border-[#000]/10 rounded-xl shadow-md overflow-hidden hover:shadow-lg transition-shadow duration-300">
-            <img className="w-full" src={shoe3} alt="Product Image" />
-            <div className="p-4">
-              <span className="text-sm text-gray-500 uppercase tracking-wide">
-                Chaussure
-              </span>
-              <h2 className="mt-2 text-lg font-semibold">Basket</h2>
-              <p className="mt-1 text-lg font-bold">$49.99</p>
-              <button className="mt-4 w-full bg-[#fa3253] text-white py-2 px-4 rounded-lg hover:bg-[#fa183e] transition-colors duration-300">
-                Order
-              </button>
-            </div>
-          </div>
-          <div className="bg-white border border-[#000]/10 rounded-xl shadow-md overflow-hidden hover:shadow-lg transition-shadow duration-300">
-            <img className="w-full" src={shoe4} alt="Product Image" />
-            <div className="p-4">
-              <span className="text-sm text-gray-500 uppercase tracking-wide">
-                Chaussure
-              </span>
-              <h2 className="mt-2 text-lg font-semibold">Basket</h2>
-              <p className="mt-1 text-lg font-bold">$49.99</p>
-              <button className="mt-4 w-full bg-[#fa3253] text-white py-2 px-4 rounded-lg hover:bg-[#fa183e] transition-colors duration-300">
-                Order
-              </button>
-            </div>
-          </div>
+        
+          {products.status.getAll === "pending" && (<p>Chargment encore...</p>)}
+          {products.status.getAll === "failed" && (<p className="text-red-600">Une erreur est venue</p>)}
+
+          {products.items.length == 0 && (<p>Pas de produit</p>)}
           {products.items.map((item, index) => (
             <div
               key={index.toString()}
