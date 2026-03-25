@@ -38,7 +38,7 @@ export default function MessageInput() {
           fileName: "",
           fileType: "",
           fileUrl: "",
-          senderId: user?.user.id as number,
+          userId: user?.user.id as number,
           seen: false,
           createdAt: Date(),
           sender: user?.user as User,

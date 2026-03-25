@@ -6,7 +6,7 @@ export type Message = {
   fileUrl: string | null,
   fileName: string | null,
   fileType: string | null,
-  senderId: number
+  userId: number
   conversationId: number
   seen: boolean
   createdAt: string

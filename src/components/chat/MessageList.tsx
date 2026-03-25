@@ -21,10 +21,8 @@ export default function MessageList() {
     });
 
     socket.on("typing", (data: { userId: number }) => {
-      console.log("asda", data);
       
       if (data.userId !== user?.user.id) {
-        console.log("data.userId", data.userId);
         
         setTypingUser(data.userId);
 
@@ -59,11 +57,11 @@ export default function MessageList() {
       {messages.map((msg, index) => (
         <div
           key={index}
-          className={`mb-3 flex w-full ${msg.senderId === user?.user.id ? "justify-end" : "justify-start"
+          className={`mb-3 flex w-full ${msg.userId === user?.user.id ? "justify-end" : "justify-start"
             }`}
         >
           <div
-            className={`max-w-xs rounded-lg px-4 py-2 text-sm shadow ${msg.senderId === user?.user.id
+            className={`max-w-xs rounded-lg px-4 py-2 text-sm shadow ${msg.userId === user?.user.id
               ? "bg-pink-600 text-white"
               : "bg-white text-gray-800 border border-gray-200"
               }`}
