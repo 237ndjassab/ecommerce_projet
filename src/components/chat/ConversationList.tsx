@@ -51,9 +51,9 @@ export default function ConversationList() {
             <p>
               {item.isGroup
                 ? item.name
-                : `${item.members[1].user.firstName} ${item.members[1].user.lastName}`}
+                : `${item.members[0].user.firstName} ${item.members[0].user.lastName}`}
             </p>
-            {item.isGroup ? null : item.members[1].user.isOnline ? (
+            {item.isGroup ? null : item.members[0].user.isOnline ? (
               <div className="w-2.5 h-2.5 rounded-full bg-green-400 "></div>
             ) : null}
           </div>
