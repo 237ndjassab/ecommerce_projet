@@ -26,9 +26,9 @@ import UpdateCategory from "./pages/Admin/catalog/categories/updateCategory";
 import ProtectRoute from "./components/common/ProtectRoute";
 import New_stocks from "./pages/Admin/catalog/stocks/new_stocks";
 import CheckRole from "./components/common/CheckRole";
+import Chat from "./pages/Main/Chat.tsx";
 
 const App: React.FC = () => {
-  
   return (
     <>
       <Provider store={store}>
@@ -42,19 +42,52 @@ const App: React.FC = () => {
               <Route path="categorie" index element={<Category />} />
               <Route path="about" index element={<About_us />} />
               <Route path="contact" index element={<Contact />} />
+              <Route path="chat" index element={<Chat />} />
             </Route>
 
-            <Route path="/admin" element={<ProtectRoute><CheckRole requireRole="ADMIN" isPage={true} ><AdminLayout /></CheckRole> </ProtectRoute> }>
-              <Route path="/admin" element={<Navigate to={"/admin/dashboard"} />} />
+            <Route
+              path="/admin"
+              element={
+                <ProtectRoute>
+                  <CheckRole requireRole={["ADMIN", "SUPERADMIN"]} isPage={true}>
+                    <AdminLayout />
+                  </CheckRole>{" "}
+                </ProtectRoute>
+              }
+            >
+              <Route
+                path="/admin"
+                element={<Navigate to={"/admin/dashboard"} />}
+              />
               <Route path="/admin/dashboard" index element={<Dashboard />} />
-              <Route path="/admin/addcategory" index element={<AddCategory />} />
-              <Route path="/admin/updatecategory" index element={<UpdateCategory />} />
-              <Route path="/admin/allcategory" index element={<AllCategories />} />
-              <Route path="/admin/allproducts" index element={<AllProducts />} />
-              <Route path="/admin/productList" index element={<ProductsList />} />
+              <Route
+                path="/admin/addcategory"
+                index
+                element={<AddCategory />}
+              />
+              <Route
+                path="/admin/updatecategory"
+                index
+                element={<UpdateCategory />}
+              />
+              <Route
+                path="/admin/allcategory"
+                index
+                element={<AllCategories />}
+              />
+              <Route
+                path="/admin/allproducts"
+                index
+                element={<AllProducts />}
+              />
+              <Route
+                path="/admin/productList"
+                index
+                element={<ProductsList />}
+              />
               <Route path="/admin/new_stocks" index element={<New_stocks />} />
             </Route>
-          
+
             <Route path="/register" element={<Register />} />
             <Route path="/login" element={<Login />} />
             <Route path="/forgotpwd" element={<ForgotPassword />} />

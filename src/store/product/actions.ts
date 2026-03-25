@@ -90,7 +90,7 @@ export const deleteProduct = createAsyncThunk<ApiResponse<Product>, number>(
   "product/deleteProduct",
   async (id, apiThunk) => {
     try {
-      const response = await fetch(
+      const response = await fetchWithAuth(
         `${import.meta.env.VITE_API_URL}/products/${id}`,
         {
           method: "DELETE",
