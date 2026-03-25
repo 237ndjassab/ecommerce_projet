@@ -1,7 +1,11 @@
 import { createSlice, type PayloadAction } from "@reduxjs/toolkit";
 import type { Conversation, Member } from "../../types/chat.ts";
 import type { ApiError, statusType } from "../../types/base.ts";
-import { createConversationAction, getAllConversationAction, getMessageAction } from "./action.ts";
+import {
+  createConversationAction,
+  getAllConversationAction,
+  getMessageAction,
+} from "./action.ts";
 import type { Message } from "../../pages/Main/types.chat.ts";
 
 export interface conversationProp {
@@ -46,16 +50,16 @@ const conversationSlice = createSlice({
   reducers: {
     checkUserOnline: () => {
       // state.conversations.map(item => {
-        // if (action.payload.includes(item.id)) {
-        //   item.isOnline = true;
-        // } else {
-        //   item.isOnline = false;
-        // }
+      // if (action.payload.includes(item.id)) {
+      //   item.isOnline = true;
+      // } else {
+      //   item.isOnline = false;
+      // }
       // });
     },
     setNewMessage: (state, action: PayloadAction<Message>) => {
       state.messages.push(action.payload);
-    }
+    },
   },
   extraReducers: (builder) => {
     builder
@@ -69,6 +73,7 @@ const conversationSlice = createSlice({
           state.name = action.payload.data.name;
           state.isGroup = action.payload.data.isGroup;
           state.members = action.payload.data.members;
+          state.conversations.push(action.payload.data);
         }
       })
       .addCase(createConversationAction.rejected, (state, action) => {
