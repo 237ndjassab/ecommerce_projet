@@ -55,7 +55,7 @@ const Header = () => {
                 onClick={() => null}
                 className="hover:text-[#fa3253] hover:cursor-pointer transition-all duration-150"
               >
-                {auth.userInfo.user.lastName}
+                {auth.userInfo.user.firstName}  {auth.userInfo.user.lastName}
               </button>
             ) : (
               <Link

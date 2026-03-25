@@ -78,7 +78,7 @@ export default function ConversationList() {
             <LuCircleX color="white" size="20px" />
           </div>
         </div>
-        {users.map((item) => (
+        {users.filter(item=> item.id != authInfo?.user.id).map((item) => (
           <div
             onClick={() => {
               handleCreateConversation([item.id]);
