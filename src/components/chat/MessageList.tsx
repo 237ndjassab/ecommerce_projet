@@ -6,7 +6,6 @@ import useAppDispatch from "../../hooks/useAppDispatch.ts";
 import { setNewMessage } from "../../store/chat/slice.ts";
 
 
-
 export default function MessageList() {
   const [typingUser, setTypingUser] = useState<number | null>(null);
   const dispatch = useAppDispatch();

@@ -58,6 +58,9 @@ const conversationSlice = createSlice({
       // });
     },
     setNewMessage: (state, action: PayloadAction<Message>) => {
+
+      console.log("action", action.payload);
+      
       state.messages.push(action.payload);
     },
   },
