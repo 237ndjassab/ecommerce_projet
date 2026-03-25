@@ -9,8 +9,30 @@ import useAppDispatch from "../../hooks/useAppDispatch";
 import { getAllCategory } from "../../store/category/actions";
 import useAppSelector from "../../hooks/useAppSelector";
 import { getAllProduct } from "../../store/product/actions";
+import landing from "../../assets/images/landingrbg.png";
+import { TbCategory } from "react-icons/tb";
+import shoe1 from "../../assets/images/shoe1.jpg";
+import shoe2 from "../../assets/images/shoe2.jpg";
+import shoe3 from "../../assets/images/shoe3.jpg";
+import shoe4 from "../../assets/images/shoe4.jpg";
+import { useEffect } from "react";
+import useAppDispatch from "../../hooks/useAppDispatch";
+import { getAllCategory } from "../../store/category/actions";
+import useAppSelector from "../../hooks/useAppSelector";
+import { getAllProduct } from "../../store/product/actions";
 
 const Home = () => {
+  const dispatch = useAppDispatch();
+  const products = useAppSelector((state) => state.product);
+  const categories = useAppSelector((state) => state.category);
+
+  console.log(categories.items);
+
+  useEffect(() => {
+    dispatch(getAllProduct());
+    dispatch(getAllCategory());
+  }, [dispatch]);
+
   const dispatch = useAppDispatch();
   const products = useAppSelector((state) => state.product);
   const categories = useAppSelector((state) => state.category);

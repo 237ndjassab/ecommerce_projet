@@ -8,7 +8,28 @@ import type { ResetPasswordDto } from "../../types/user";
 import { toast } from "react-toastify";
 import useAppDispatch from "../../hooks/useAppDispatch";
 import { resetPasswordAction } from "../../store/auth/actions";
+import { Formik, Form, type FormikHelpers } from "formik";
+import * as Yup from "yup";
+import { useLocation, useNavigate } from "react-router";
+import reset from "../../assets/images/reset.png";
+import Password from "../../components/ui/password";
+import { useEffect } from "react";
+import type { ResetPasswordDto } from "../../types/user";
+import { toast } from "react-toastify";
+import useAppDispatch from "../../hooks/useAppDispatch";
+import { resetPasswordAction } from "../../store/auth/actions";
 
+const ResetPassword = () => {
+  const dispatch = useAppDispatch();
+  const location = useLocation();
+  const navigate = useNavigate();
+  const email = location.state ? location.state.email : null;
+
+  useEffect(() => {
+    if (!email) {
+      navigate("/forgotpwd");
+    }
+  }, [navigate, email]);
 const ResetPassword = () => {
   const dispatch = useAppDispatch();
   const location = useLocation();
